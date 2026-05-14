@@ -21,4 +21,9 @@ Se analizaron datos transcriptómicos de RNA-seq obtenidos del BioProject PRJNA1
 
 ### Estrutura del repositorio
 
-Este repositorio contiene una estrutrua diferente a la de de Ken, para observar la documentacion de la estrutura de Ken, dirgirse a `Reporte_Equipo3_Rna_seq.qmd`
+Este repositorio contiene una estrutrua diferente a la de de Ken, para observar la documentacion de la estrutura de Ken, dirgirse a `Reporte_Equipo3_Rna_seq.qmd`. Las carpetas con su descripcion se muestran a continuación
+
+- `figures/`: Este directorio contiene todas las imagenes generadas durante el analisis y la documentación
+- `Reporte_Equipo3_Rna_seq.qmd`: Es un archivo .qmd con toda la documentación del analisis, discusion, etc.
+- `metadatos.csv`: Este archivo contiene los metadatos del analisis
+- 
