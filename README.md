@@ -24,6 +24,22 @@ Se analizaron datos transcriptómicos de RNA-seq obtenidos del BioProject PRJNA1
 Este repositorio contiene una estrutrua diferente a la de de Ken, para observar la documentacion de la estrutura de Ken, dirgirse a `Reporte_Equipo3_Rna_seq.qmd`. Las carpetas con su descripcion se muestran a continuación
 
 - `figures/`: Este directorio contiene todas las imagenes generadas durante el analisis y la documentación
+  - `antes_trimming_multqic_mean_quality.png`: Esta imagen es el resultado del multiqc en la seeccion mean quality antes de hacer el trimming
+  -  `antes_trimming_q_scores.png`: La imagen representa la distribucion de calidades de las secuencias antes de hacer el trimming
 - `Reporte_Equipo3_Rna_seq.qmd`: Es un archivo .qmd con toda la documentación del analisis, discusion, etc.
-- `metadatos.csv`: Este archivo contiene los metadatos del analisis
-- 
+- `metadatas.csv`: Este archivo contiene los metadatos del analisis
+
+
+| biosample | grupo     | condicion                          | sample_ID           | srr_ID      |
+|----------:|-----------|------------------------------------|---------------------|-------------|
+| 36978221  | GC mice   | Control en la Tierra               | SAMN36978221_GC     | SRR25629473 |
+| 36978220  | GC mice   | Control en la Tierra               | SAMN36978220_GC     | SRR25629472 |
+| 36978219  | GC mice   | Control en la Tierra               | SAMN36978219_GC     | SRR25629471 |
+| 36978218  | A1G mice  | Gravedad terrestre artificial      | SAMN36978218_A1G    | SRR25629470 |
+| 36978217  | A1G mice  | Gravedad terrestre artificial      | SAMN36978217_A1G    | SRR25629469 |
+| 36978216  | A1G mice  | Gravedad terrestre artificial      | SAMN36978216_A1G    | SRR25629468 |
+| 36978215  | MG mice   | Microgravedad en el espacio       | SAMN36978215_MG     | SRR25629467 |
+| 36978214  | MG mice   | Microgravedad en el espacio       | SAMN36978214_MG     | SRR25629466 |
+| 36978213  | MG mice   | Microgravedad en el espacio       | SAMN36978213_MG     | SRR25629465 |
+
+
