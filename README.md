@@ -1,6 +1,7 @@
 # Documentacion del proyecto: Impact of spaceflight and artificial gravity on sulfur metabolism in mouse liver: sulfur metabolomic and transcriptomic analysis
 **Fecha de entrega: 20 de Mayo del 2025**
 **Bioinformatica y estadistica 2**
+**Semestre 4**
 
 ### Elaborado por:
 
@@ -52,4 +53,24 @@ Este repositorio contiene una estrutrua diferente a la de de Ken, para observar 
 | 36978214  | MG mice   | Microgravedad en el espacio       | SAMN36978214_MG     | SRR25629466 |
 | 36978213  | MG mice   | Microgravedad en el espacio       | SAMN36978213_MG     | SRR25629465 |
 
+### Modulos
 
+```
+anaconda3/2025.06
+fastqc/0.11.3
+R/4.4.1
+nextflow/23.04.1
+java11
+nf-core/rnaseq 3.14.0
+singularity/3.7.0
+deseq2/1.28.0
+salmon/1.10.1
+trimgalore/0.6.7
+python/3.9.5
+tximeta/1.12.0
+```
+
+### Explicacion del pipeline y scripts
+
+
+### Referencias
