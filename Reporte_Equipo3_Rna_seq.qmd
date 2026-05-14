@@ -418,10 +418,10 @@ Dimensión del dataset: 109616 3
 
 ## Referencias
 
-1)  Kurosawa R, Sugimoto R, Imai H, Atsuji K, Yamada K, Kawano Y, Ohtsu I, Suzuki K. Impact of spaceflight and artificial gravity on sulfur metabolism in mouse liver: sulfur metabolomic and transcriptomic\>
+1)  Blaber, E. et al. (2017). Spaceflight Activates Autophagy Programs and the Proteasome in Mouse Liver. International Journal of Molecular Sciences
 
-2)  Vinken M. Hepatology in space: Effects of spaceflight and simulated microgravity on the liver. Liver Int. 2022 Dec;42(12):2599-2606. doi: 10.1111/liv.15444. Epub 2022 Oct 12. PMID: 36183343.
+2)  Mhatre, S. et al. (2022). Artificial Gravity Partially Protects Space-induced Neurological Deficits in Drosophila melanogaster. Cell Reports
 
-3)  Blaber, E. et al. (2017). Spaceflight Activates Autophagy Programs and the Proteasome in Mouse Liver. International Journal of Molecular Sciences
+3)  Kurosawa R, Sugimoto R, Imai H, Atsuji K, Yamada K, Kawano Y, Ohtsu I, Suzuki K. Impact of spaceflight and artificial gravity on sulfur metabolism in mouse liver: sulfur metabolomic and transcriptomic\>
 
-4)  Mhatre, S. et al. (2022). Artificial Gravity Partially Protects Space-induced Neurological Deficits in Drosophila melanogaster. Cell Reports
+4)  Vinken M. Hepatology in space: Effects of spaceflight and simulated microgravity on the liver. Liver Int. 2022 Dec;42(12):2599-2606. doi: 10.1111/liv.15444. Epub 2022 Oct 12. PMID: 36183343.
