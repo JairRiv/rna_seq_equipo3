@@ -5,7 +5,7 @@ output: html_notebook
 
 **Bioinformática y estadística 2**
 
-Fecha de entrega:
+Fecha de entrega: 20 de Mayo del 2025
 
 ### Elaborado por:
 
@@ -185,7 +185,7 @@ Las carpetas siguen la siguiente estructura:
 
         -   **fastqc/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2/trimgalore/fastqc`): Contiene el reporte de las secuencias posterior al trimming. Esta carpeta es el input de **multiqc_trim/**
 
-    -    **work/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2/work`): Dentro de esta carpeta se guardan todos los archivos ejecutados durante el pipeline. Dentro de esta podemos encontrar las secuencias post trimming. Podemos encontrar sus rutas con el comando `find . -name "val.fq.gz"`
+    -   **work/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2/work`): Dentro de esta carpeta se guardan todos los archivos ejecutados durante el pipeline. Dentro de esta podemos encontrar las secuencias post trimming. Podemos encontrar sus rutas con el comando `find . -name "val.fq.gz"`
 
     -   **salmon/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2/salmon`): Este directorio engloba todo los outputs del pseudoalinemiento con Salmon. Nos dice la cuantificación de transcritos, abundancia, etc.
 
@@ -211,40 +211,37 @@ Las carpetas siguen la siguiente estructura:
 
         -   **tx2gene.tsv**: Muestra la relación entre transcritos y gen
 
--   
-
 Se analizó la calidad de las secuencias en los datos crudos, obteniendo un contenido de GC en un rango de 48 - 50% , con una distribución normal y una profundidad de lectura en un rango de 14.4 M a 25.9 M secuencias.
 
 Las muestras presentan una calidad óptima, con valores dentro de la zona verde y un puntaje Phred de 30 en todas las muestras.
 
-```{r, out.width="50%", fig.show="hold", echo = FALSE}
-knitr::include_graphics("/Users/romaan/Downloads/lolsi.jpeg")
-knitr::include_graphics("/Users/romaan/Downloads/WhatsApp Image 2026-04-21 at 19.24.11.jpeg")
-```
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trimming_multqic_mean_quality.png" style="width: 300px;"/> <img src="./figures/antes_trimming_q_scores.png" style="width: 300px;"/>
+:::
 
 Calidad de las secuencias en muestras GC, A1G y MG mice
 
 En la gráfica "Per Sequence Quality Scores", la calidad está en 30 para todas las lecturas. Esto es lo esperado debido a que el secuenciador Illumina NovaSeq 6000 tiene una calidad muy alta.
 
-```{r, out.width="50%", fig.show="hold", echo = FALSE}
-knitr::include_graphics("/Users/romaan/Downloads/imagen1111.jpeg")
-```
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trimming_per_base_seq_content.png" style="width: 900px;"/>
+:::
 
 Proporción de cada base por posición
 
 Esta gráfica está dentro de lo esperado para un experimento de RNA seq, se observa homogeneidad a lo largo de la gráfica, excepto al inicio, lo cual es lo esperado debido al ruido biológico.
 
-```{r, out.width="50%", fig.show="hold", echo = FALSE}
-knitr::include_graphics("/Users/romaan/Downloads/WhatsApp Image 2026-04-21 at 19.38.11.jpeg")
-```
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trimming_gc_percent.png" style="width: 600px;"/>
+:::
 
 Variaciones en el porcentaje de %GC en todas las muestras
 
 En el mRNA de ratón, el contenido de GC esperado debería estar cercano a 50%, debido a que estamos capturando exones y genes expresados, lo cual puede aumentar la proporción esperada. Eso mismo es lo que observamos en la gráfica, donde el pico más alto está cercano a 50%.
 
-```{r, out.width="50%", fig.show="hold", echo = FALSE}
-knitr::include_graphics('/Users/romaan/Downloads/WhatsApp Image 2026-04-21 at 19.41.07.jpeg')
-```
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trimming_per_base_n_content.png" style="width: 600px;"/>
+:::
 
 Contenido de N por base
 
@@ -252,10 +249,9 @@ El secuenciador identificó correctamente las bases en todas las posiciones de l
 
 Distribución de la longitud de secuencias: todas las muestras tienen una longitud de 150 bp, lo cual es lo esperado considerando que son paired-end. En total con ambas lecturas, obtendríamos la longitud de 300 bp.
 
-```{r, out.width="50%", fig.show="hold", echo = FALSE}
-knitr::include_graphics("/Users/romaan/Downloads/WhatsApp Image 2026-04-21 at 19.46.40.jpeg")
-knitr::include_graphics("/Users/romaan/Downloads/WhatsApp Image 2026-04-21 at 19.45.35.jpeg")
-```
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trim_sequence_dup_lev.png" style="width: 400px;"/> <img src="./figures/antes_triming_adapters.png" style="width: 400px;"/>
+:::
 
 ### Calidad de las secuencias en las muestras
 
