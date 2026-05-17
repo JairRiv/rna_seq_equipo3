@@ -254,7 +254,7 @@ Distribución de la longitud de secuencias: todas las muestras tienen una longit
 :::
 
 ### Calidad de las secuencias en las muestras
-
+l
 El contenido de adaptadores es adecuado ya que no sube a más del 2%.
 
 Por otro lado, aunque se observan varios picos en la distribución de los niveles de duplicados, el hecho de que todas las características estén bien, además del diseño del experimento, es decir, RNA seq de hígado de ratón separado por PolyA, sugiere que puede ser una señal real de expresión en lugar de un problema, sin embargo se tomará en cuenta para análisis posteriores.
@@ -265,7 +265,7 @@ Los indicadores de MultiQC muestran una alta calidad, por lo cual los datos son 
 
 ## Diagrama de flujo
 
-![](Downloads/WhatsApp%20Image%202026-04-28%20at%2014.27.02.jpeg)
+![](figures/diagramaFlujoRNA.jpeg)
 
 ## Explicación de inputs y outputs
 
@@ -361,7 +361,7 @@ Los datos crudos tenían un tamaño de 300 bp.
 
 Los reads procesados sin adaptadores tienen longitudes más variadas, desde 40-300 bp, aunque la distribución de los tamaños se concentra mucho más hacia 300 bp:
 
-![](Downloads/WhatsApp%20Image%202026-04-28%20at%2014.52.25.jpeg){width="545"}
+![](figures/SeqLenOverAll.png)
 
 ## Importación de datos en R
 
