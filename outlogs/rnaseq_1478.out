@@ -1,0 +1,431 @@
+N E X T F L O W  ~  version 23.04.3
+Launching `https://github.com/nf-core/rnaseq` [mad_solvay] DSL2 - revision: b89fac3265 [3.14.0]
+
+
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/rnaseq v3.14.0-gb89fac3
+------------------------------------------------------
+Core Nextflow options
+  revision               : 3.14.0
+  runName                : mad_solvay
+  containerEngine        : singularity
+  launchDir              : /mnt/data/bioinfo-estadistica-2/jcontreras/pruebas
+  workDir                : /mnt/data/bioinfo-estadistica-2/jcontreras/pruebas/work
+  projectDir             : /home/jcontreras/.nextflow/assets/nf-core/rnaseq
+  userName               : jcontreras
+  profile                : singularity
+  configFiles            : 
+
+Input/output options
+  input                  : /home/jcontreras/casa/pruebas/samplesheet.csv
+  outdir                 : /home/jcontreras/casa/pruebas/quality2
+
+Reference genome options
+  genome                 : GRCm38
+  fasta                  : s3://ngi-igenomes/igenomes/Mus_musculus/Ensembl/GRCm38/Sequence/WholeGenomeFasta/genome.fa
+  gtf                    : s3://ngi-igenomes/igenomes/Mus_musculus/Ensembl/GRCm38/Annotation/Genes/genes.gtf
+  gene_bed               : s3://ngi-igenomes/igenomes/Mus_musculus/Ensembl/GRCm38/Annotation/Genes/genes.bed
+  star_index             : s3://ngi-igenomes/igenomes/Mus_musculus/Ensembl/GRCm38/Sequence/STARIndex/
+
+Alignment options
+  pseudo_aligner         : salmon
+  min_mapped_reads       : 5
+  extra_salmon_quant_args: --gcBias true
+
+Process skipping options
+  skip_alignment         : true
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+If you use nf-core/rnaseq for your analysis please cite:
+
+* The pipeline
+  https://doi.org/10.5281/zenodo.1400710
+
+* The nf-core framework
+  https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+  https://github.com/nf-core/rnaseq/blob/master/CITATIONS.md
+
+WARN: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '--skip_alignment' parameter has been provided.
+  Skipping alignment, genome-based quantification and all downstream QC processes.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:PREPAR... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[91/d371c1] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 7 of 7, cached: 7
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:QUANTI... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b9/d2cf0a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 9 of 9, cached: 9 ✔
+[d0/2bdcec] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/1be58c] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[7d/315f04] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[e8/ee326f] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/38b973] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[0a/9a8af2] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[1a/6af120] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b9/d2cf0a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 9 of 9, cached: 9 ✔
+[d0/2bdcec] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/1be58c] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[7d/315f04] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[e8/ee326f] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/38b973] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[0a/9a8af2] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[1a/6af120] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... -
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+Pulling Singularity image https://depot.galaxyproject.org/singularity/multiqc:1.19--pyhdfd78af_0 [cache /mnt/data/bioinfo-estadistica-2/jcontreras/pruebas/work/singularity/depot.galaxyproject.org-singularity-multiqc-1.19--pyhdfd78af_0.img]
+WARN: Singularity cache directory has not been defined -- Remote image will be stored in the path: /mnt/data/bioinfo-estadistica-2/jcontreras/pruebas/work/singularity -- Use the environment variable NXF_SINGULARITY_CACHEDIR to specify a different location
+
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b9/d2cf0a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 9 of 9, cached: 9 ✔
+[d0/2bdcec] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/1be58c] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[7d/315f04] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[e8/ee326f] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/38b973] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[0a/9a8af2] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[1a/6af120] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... [  0%] 0 of 1
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+
+
+executor >  local (1)
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b9/d2cf0a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 9 of 9, cached: 9 ✔
+[d0/2bdcec] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/1be58c] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[7d/315f04] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[e8/ee326f] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/38b973] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[0a/9a8af2] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[1a/6af120] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1, cached: 1 ✔
+[d1/64945d] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... [  0%] 0 of 1
+[-        ] process > NFCORE_RNASEQ:RNASEQ:MULTIQC   -
+
+
+executor >  local (2)
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b9/d2cf0a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 9 of 9, cached: 9 ✔
+[d0/2bdcec] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/1be58c] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[7d/315f04] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[e8/ee326f] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/38b973] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[0a/9a8af2] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[1a/6af120] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1, cached: 1 ✔
+[d1/64945d] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... [100%] 1 of 1 ✔
+[33/3433fe] process > NFCORE_RNASEQ:RNASEQ:MULTIQ... [  0%] 0 of 1
+
+executor >  local (2)
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b9/d2cf0a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 9 of 9, cached: 9 ✔
+[d0/2bdcec] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/1be58c] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[7d/315f04] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[e8/ee326f] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/38b973] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[0a/9a8af2] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[1a/6af120] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1, cached: 1 ✔
+[d1/64945d] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... [100%] 1 of 1 ✔
+[33/3433fe] process > NFCORE_RNASEQ:RNASEQ:MULTIQ... [  0%] 0 of 1
+
+executor >  local (2)
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b9/d2cf0a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 9 of 9, cached: 9 ✔
+[d0/2bdcec] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/1be58c] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[7d/315f04] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[e8/ee326f] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/38b973] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[0a/9a8af2] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[1a/6af120] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1, cached: 1 ✔
+[d1/64945d] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... [100%] 1 of 1 ✔
+[33/3433fe] process > NFCORE_RNASEQ:RNASEQ:MULTIQ... [100%] 1 of 1 ✔
+
+executor >  local (2)
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b9/d2cf0a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 9 of 9, cached: 9 ✔
+[d0/2bdcec] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/1be58c] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[7d/315f04] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[e8/ee326f] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/38b973] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[0a/9a8af2] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[1a/6af120] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1, cached: 1 ✔
+[d1/64945d] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... [100%] 1 of 1 ✔
+[33/3433fe] process > NFCORE_RNASEQ:RNASEQ:MULTIQ... [100%] 1 of 1 ✔
+-[nf-core/rnaseq] Pipeline completed successfully -
+
+executor >  local (2)
+[49/9d2465] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[2e/b04338] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[bd/bfdc1a] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[d5/e91c7f] process > NFCORE_RNASEQ:RNASEQ:PREPAR... [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RNASEQ:RNASEQ:CAT_FASTQ -
+[e1/d76287] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[69/92edb0] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[24/b924fd] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b3/3f7326] process > NFCORE_RNASEQ:RNASEQ:FASTQ_... [100%] 9 of 9, cached: 9 ✔
+[b9/d2cf0a] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 9 of 9, cached: 9 ✔
+[d0/2bdcec] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/1be58c] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[7d/315f04] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[e8/ee326f] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[08/38b973] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[0a/9a8af2] process > NFCORE_RNASEQ:RNASEQ:QUANTI... [100%] 1 of 1, cached: 1 ✔
+[1a/6af120] process > NFCORE_RNASEQ:RNASEQ:DESEQ2... [100%] 1 of 1, cached: 1 ✔
+[d1/64945d] process > NFCORE_RNASEQ:RNASEQ:CUSTOM... [100%] 1 of 1 ✔
+[33/3433fe] process > NFCORE_RNASEQ:RNASEQ:MULTIQ... [100%] 1 of 1 ✔
+-[nf-core/rnaseq] Pipeline completed successfully -
+Completed at: 27-Apr-2026 10:58:06
+Duration    : 13m 26s
+CPU hours   : 47.2 (99.9% cached)
+Succeeded   : 2
+Cached      : 56
+
+
