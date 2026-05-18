@@ -130,6 +130,7 @@ datatable(
 Para este análisis de RNA-seq, se utilizaron datos de un estudio que compara transcriptomas hepáticos de ratones bajo tres condiciones diferentes: ratones expuestos a gravedad artificial en la Tierra, ratones sometidos a microgravedad en el espacio durante 30 días y un control de ratones en la Tierra.
 
 Se analizaron datos transcriptómicos de RNA-seq obtenidos del BioProject PRJNA1005192 con nueve transcriptomas de hígado paired-end enriquecidas para mRNA Poly(A), secuenciadas con Illumina NovaSeq 6000. Cada condición contó con tres réplicas biológicas y una profundidad de secuenciación de entre 14.4 y 25.9 millones de lecturas, con longitud promedio de 300 pb. Nuestro análisis permitió explorar cambios en la expresión génica relacionados con la adaptación fisiológica hepática frente a condiciones de microgravedad y gravedad artificial.
+Tras el análisis transcriptómico, se encontró un cambio en la expresión de genes asociados a la producción de antioxidantes, compensando el agotamiento de compuestos de azufre.
 
 ## Descripción de nuestras rutas
 
@@ -368,9 +369,7 @@ Los reads procesados sin adaptadores tienen longitudes más variadas, desde 40-3
 Se realizó el siguiente script para la importación de los datos:
 
 ```{bash}
-#| eval: false
-.libPaths(c("~/R/libs", .libPaths()))
-
+GNU nano 5.6.1                                                                              normalizacion_salmon.r                                                                                        
 # Paquetes
 library(tximport)
 library(DESeq2)
@@ -390,31 +389,72 @@ archivos_sf
 # Importamos con tximport 
 tx2gene <- read.table(
   "/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2/salmon/tx2gene.tsv",
-  header = TRUE,
-  sep    = "\t"
+  header = FALSE,
+  sep    = "\t",
+  stringsAsFactors = FALSE
 )
-head(tx2gene)
-dim(tx2gene)
+
+tx2gene <- tx2gene[,1:2]
+
+colnames(tx2gene) <- c("TXNAME", "GENEID")
 
 txi.salmon <- tximport(
   archivos_sf,
   type           = "salmon",
-  tx2gene        = tx2gene,
   ignoreTxVersion = TRUE,
-  ignoreAfterBar  = TRUE
+  ignoreAfterBar  = TRUE,
+  tx2gene = tx2gene
 )
 
 # Verificamos
 names(txi.salmon)
 
 # Imprimimos
-all_genes <- rownames(txi.salmon$abundance)
-length(unique(all_genes))
+all_transcripts <- rownames(txi.salmon$abundance)
+length(unique(all_transcripts))
+
+#GUARDAR TXI PARA DESEQ2
+outdir <- "/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/"
+
+save(txi.salmon, file = paste0(outdir, "txi_salmon.RData"))
+message(" txi.salmon guardado en ", outdir, "txi_salmon.RData")
 ```
 
 A partir de esto se obtuvo un total de 44677 transcritos.
 
 Dimensión del dataset: 109616 3
+
+# Análisis de componentes principales
+Se realizó una normalización de Transcritos por Millón (TPM), para posteriormente generar un PCA. El primer gráfico mostró que los datos ya presentaban una estructura coherente; los clusters correspondientes a las condiciones GC, A1G y MG eran claramente distinguibles, lo que indicaba una separación biológica sólida desde el comienzo. 
+En este punto, la primera componente principal (PC1) lograba explicar el 33% de la varianza total del experimento.
+Con el objetivo de optimizar la precisión del análisis, se procedió a realizar una corrección de batch effect, por medio de la librería Limma.
+Aunque el agrupamiento inicial era aceptable, tras este proceso de corrección, los clusters en el PCA se visualizaron de manera mucho más compacta y definida. Con esto se demuestra que la variación tenga una explicación biológica y no se deba a ruido o a variación en las corridas de secuenciación.
+La efectividad de esta corrección se observa en el aumento de la varianza explicada por los componentes: el valor de la PC1 ascendió del 33.3% al 46%, lo que demuestra que, tras eliminar el ruido técnico, la componente principal captura una mayor proporción de la variabilidad biológica.
+Es importante notar que, si bien el scree plot todavía muestra los mismos valores en la varianza, el análisis del PCA corregido confirma visualmente una mejora en la agrupación de los datos.
+En conclusión, la aplicación de la corrección de batch permitió reducir el ruido técnico, logrando que los grupos experimentales se agruparan mejor y facilitando una interpretación más limpia de los cambios en la expresión génica.
+
+### PCA antes de corrección
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/PCA_con_batch.png" style="width: 300px;"/> <img src="./figures/scree_con_batch.png" style="width: 300px;"/>
+:::
+
+### PCA después de la corrección
+
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/PCA_sin_batch.png" style="width: 300px;"/> <img src="./figures/scree_sin_batch.png" style="width: 300px;"/>
+:::
+
+# Discusión de los resultados
+
+Tras el análisis de la expresión de genes y los resultados del paper, se observa cómo el viaje al espacio provoca un gran estrés a los seres vivos, particularmente para el riñón. Como se menciona en el artículo, el riñón es el órgano más afectado y con mayor expresión diferencial de genes al someterse a viajes espaciales.
+Se estudió cómo los cambios de gravedad y condiciones ambientales en el espacio provocan cambios en las rutas metabólicas. Los compuestos de azufre, al intentar eliminar los radicales libres, se consumen masivamente en el organismo, provocando una mayor expresión de genes asociados al estrés oxidativo. También se observa cómo hay una menor capacidad reductora del organismo.
+
+Al comparar dichos resultados con otros artículos e investigaciones, se encontraron conclusiones similares. En el artículo de Vinken, se encontró cómo los viajes espaciales provocan cambios negativos en la función hepática: inflamación y estrés oxidativo. Se confirma una reducción en los niveles de antioxidantes de azufre. 
+Otro estudio, de Blaber et. al (2017) utilizó ratones para demostrar que los viajes espaciales provocan mayor estrés oxidativo en los organismos. Ambos artículos mencionan al gen Gclc, como parte de la respuesta compensatoria a dicho estrés.
+Por último, otro estudio de Mhatre et al. (2022), que utilizó a la especie Drosophila melanogaster, confirma que el cambio al ambiente espacial provocan mayor estrés oxidativo, además de que someter a las especies a gravedad artificial similar a la terrestre, podría ayudar a mitigar dichos efectos. Además, también se encontró enriquecimiento en las rutas de metabolismo del glutatión.
+
+Por lo tanto, se puede afirmar que gran parte de los cambios metabólicos en los compuestos de azufre se debe a la baja gravedad. Al intentar compensarlo, se sobreexpresan genes relacionados a la producción de antioxidantes y la síntesis de glutatión. Por otro lado, se demuestra cómo se pueden compensar estos efectos mediante gravedad artificial, lo cual confirma el objetivo de este grupo 1g.
+
 
 ## Referencias
 
