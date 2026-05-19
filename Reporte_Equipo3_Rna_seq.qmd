@@ -561,20 +561,17 @@ Resultados del análisis de enriquecimiento para los genes diferencialmente expr
 <img src="./figures/barplot_UP_A1G_vs_GC.png" style="width: 400px;"/>
 :::
 
-
 Resultados del análisis de enriquecimiento para genes diferencielmente expresados subregulados entre ratones en la estación espacial internacional y en la Tierra, observamos que mayormente predominan son relacionadas a la biosíntesis de los lípidos
 
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
 <img src="./figures/barplotDOWN_GO_A1G_vs_GC.png" style="width: 400px;"/>
 :::
 
-
 Resultados del Manhattan plot comparando genes sobreregulados de los subrregulados. Mientras más arriba se encuentren en el eje, más significativos son y los categoriza según las bases de datos `GO:BP = Gene Ontology Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome`
 
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
 <img src="./figures/ManhattanGO_A1G_vs_GC.png" style="width: 400px;"/>
 :::
-
 
 **Para MG_vs_A1G**
 
@@ -584,20 +581,17 @@ Resultados del análisis de enriquecimiento para los genes diferencialmente expr
 <img src="./figures/barplotDOWN_GO_MG_vs_A1G.png" style="width: 400px;"/>
 :::
 
-
 Resultados del análisis de enriquecimiento para genes diferencialmente expresados subregulados entre ratones entre microgravedad y la estación espacial internacional
 
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
 <img src="./figures/barplotUP_GO_MG_vs_A1G.png" style="width: 400px;"/>
 :::
 
-
 Resultados del Manhattan plot comparando genes sobreregulados de los subrregulados. Mientras más arriba se encuentren en el eje, más significativos son y los categoriza según las bases de datos `GO:BP = Gene Ontology Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome`
 
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
 <img src="./figures/ManhattanGO_MG_vs_A1G.png" style="width: 400px;"/>
 :::
-
 
 **Para MG_vs_GC**
 
@@ -607,20 +601,17 @@ Resultados del análisis de enriquecimiento para los genes diferencialmente expr
 <img src="./figures/barplotDOWN_GO_MG_vs_GC.png" style="width: 400px;"/>
 :::
 
-
 Resultados del análisis de enriquecimiento para genes diferencielmente expresados sobreregulados entre ratones entre la Tierra y microgravedad
 
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
 <img src="./figures/barplotUP_GO_MG_vs_GC.png" style="width: 400px;"/>
 :::
 
-
 Resultados del Manhattan plot comparando genes sobreregulados de los subrregulados. Mientras más arriba se encuentren en el eje, más significativos son y los categoriza según las bases de datos `GO:BP = Gene Ontology Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome`
 
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
 <img src="./figures/ManhattanGO_MG_vs_GC.png" style="width: 400px;"/>
 :::
-
 
 # Discusión de los resultados
 
