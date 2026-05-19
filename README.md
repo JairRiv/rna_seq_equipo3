@@ -175,18 +175,9 @@ Del trimming con TrimGalore se obtiene por muestra un reporte de texto con el to
 
 Del pseudoalineamiento con Salmon se obtiene por muestra un archivo quant.sf con la abundancia y conteo a nivel de transcrito y un quant.genes.sf a nivel de gen ademas de matrices como TPM, longitudes de genes y transcritos para todas las muestras, además del archivo tx2gene.tsv con la relación transcrito-gen. Finalmente se incluye informacion sobre la trazabilidad del pipeline, como versiones, opciones o errores
 
-## Explicación:
-- `export java`: Nextflow usa java y se fijó el directorio pq había incompatibilidad de java
-- `module load`: modulos a cargar nexftlow y singularity
-- `profile singularity`: El comando dice que haga skip en revisar programas del cluster y vaya a singularity y aplique los programas que ya tiene.
-- `input`: ruta absoluta de nuestra sampleesheet(CSV) que contiene metadata y rutas de las lecturas de secuenciación (FastQ).
-- `outdir`: ruta absoluta de donde queremos los resultados.
-- `genome`: a partir del nombre del genoma de referencia jalaŕa paths que ya lo tengan.
-- `pseudo_aligner`: usa el pseudoalineamiento deseado en este caso Salmon pero pudo ser Kallisto por ejemplo.
-- `skip_alignment`: por deafault hace un alineamiento tipo STAR, esta opción sirve para evitar que realice este paso.
-- `trimmer trimgalore`: realiza trimming quita adaptadores, es más lento qeu trimmomatic pero se especializa en adaptadores por ende esta elección.
-- `extra_salmon_quant_args`: evita el sesgo de GC provocados por la amplificación por PCR
-- `resume`: si se detiene por algún fallo, podemos volver a correr y retomará a partir del donde se quedó sin necesidad de repetir todo desde un inicio.
+### Explicacion del pipeline general: 
+
+1. Descarga de los datos desde EBI: 
 
 
 ### Versiones
