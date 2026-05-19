@@ -1,2 +1,0 @@
-WARNING: Could not load nf-core/config profiles: https://raw.githubusercontent.com/nf-core/configs/master/nfcore_custom.config
-WARNING: Could not load nf-core/config/rnaseq profiles: https://raw.githubusercontent.com/nf-core/configs/master/pipeline/rnaseq.config
