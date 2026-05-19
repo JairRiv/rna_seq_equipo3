@@ -193,6 +193,17 @@ Los indicadores de MultiQC muestran una alta calidad, por lo cual los datos son 
 
 ## Diagrama de flujo
 
+Vamos a seguir los siguientes pasos:
+
+1.  Letura y anotacion de metadatos
+2.  Descarga de las secuencias crudas
+3.  Control de calidad de las muestras
+4.  Usar nextflow (nf core rna seq) para relizar el trimming y pseudoalineamiento
+5.  Importacion de datos a R
+6.  PCA y correccion de batch
+7.  Analisis de expresion diferencial
+8.  Analisis de enriquecimiento de los genes diferencialmente expresados
+
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
 <img src="./figures/Nf-workflow .jpg" style="width: 400px;"/>
 :::
@@ -306,6 +317,20 @@ Las carpetas siguen la siguiente estructura:
         -   deseq2: Este codigo integra informacion de el script anterior para hacer el PCA, la corraccion de batch y el analisis de expresion diferencial
 
     -   **gene_ontology/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/gene_ontology`): Este script contiene el codigo para hacer el analisis de enriquecimiento
+
+    -   **outlogs/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/out_logs`): Contiene los archivos de salida estándar `.out` y los archivos de error estándar `.err` que contiene los errores o warnings de cada script corrido.
+
+        -   `DownloadData_1397.err` y `DownloadData_1397.out` corresponden al script de `download_Data.sh` de la carpeta `download_data/`
+
+        -   `deseq2_1818.err` y `deseq2_1818.out` corresponden al script de `deseq2.r` de la carpeta `normalizacion_salmon/`
+
+        -   `normalizacion_1792.err` y `normalizacion_1792.out` corresponden al script de `deseq2.r` de la carpeta `normalizacion_salmon/`
+
+        -   `rnaseq_1478.err` y `rnaseq_1478.out` corresponden al script de `rna_nextflow.sh` de la carpeta `rna_nextflow/`
+
+        -   `gene_ontology_1817.err` y `gene_ontology_1817.out` corresponden al script de `gene_ontology.sh` de la carpeta `gene_ontology/`
+
+    -   **samplesheet.csv**: Incluye el documento input de nextflow, el cual se explicara abajo
 
 #### Documentacion de nextflow
 
@@ -492,7 +517,7 @@ Dimensión del dataset: 109616 3
 
 # Análisis de componentes principales
 
-Se realizó una normalización de Transcritos por Millón (TPM) y por Z-score. Para posteriormente generar un PCA. El primer gráfico mostró que los datos ya presentaban una estructura coherente los clusters correspondientes a las condiciones GC, A1G y MG eran claramente distinguibles, lo que indicaba una separación biológica sólida desde el comienzo. En este punto, la primera componente principal (PC1) lograba explicar el 33% de la varianza total del experimento. Con el objetivo de optimizar la precisión del análisis, se procedió a realizar una corrección de batch effect, por medio de la librería Limma. Aunque el agrupamiento inicial era aceptable, tras este proceso de corrección, los clusters en el PCA se visualizaron de manera mucho más compacta y definida. Con esto se demuestra que la variación tenga una explicación biológica y no se deba a ruido o a variación en las corridas de secuenciación. La efectividad de esta corrección se observa en el aumento de la varianza explicada por los componentes: el valor de la PC1 ascendió del 33.3% al 46%, lo que demuestra que, tras eliminar el ruido técnico, la componente principal captura una mayor proporción de la variabilidad biológica. Es importante notar que, si bien el scree plot todavía muestra los mismos valores en la varianza, el análisis del PCA corregido confirma visualmente una mejora en la agrupación de los datos. En conclusión, la aplicación de la corrección de batch permitió reducir el ruido técnico, logrando que los grupos experimentales se agruparan mejor y facilitando una interpretación más limpia de los cambios en la expresión génica.
+Se realizó una normalización de Transcritos por Millón (TPM) y por Z-score. Para posteriormente generar un PCA. El primer gráfico mostró que los datos ya presentaban una estructura coherente los clusters correspondientes a las condiciones GC, A1G y MG eran claramente distinguibles, lo que indicaba una separación biológica sólida desde el comienzo. En este punto, la primera componente principal (PC1) lograba explicar el 33% de la varianza total del experimento
 
 ### PCA antes de corrección
 
@@ -500,11 +525,15 @@ Se realizó una normalización de Transcritos por Millón (TPM) y por Z-score. P
 <img src="./figures/PCA_con_batch.png" style="width: 300px;"/> <img src="./figures/scree_con_batch.png" style="width: 300px;"/>
 :::
 
+Con el objetivo de optimizar la precisión del análisis, se procedió a realizar una corrección de batch effect, por medio de la librería Limma. Aunque el agrupamiento inicial era aceptable, tras este proceso de corrección, los clusters en el PCA se visualizaron de manera mucho más compacta y definida. Con esto se demuestra que la variación tenga una explicación biológica y no se deba a ruido o a variación en las corridas de secuenciación. La efectividad de esta corrección se observa en el aumento de la varianza explicada por los componentes: el valor de la PC1 ascendió del 33.3% al 46%, lo que demuestra que, tras eliminar el ruido técnico, la componente principal captura una mayor proporción de la variabilidad biológica. Es importante notar que, si bien el scree plot todavía muestra los mismos valores en la varianza, el análisis del PCA corregido confirma visualmente una mejora en la agrupación de los datos
+
 ### PCA después de la corrección
 
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
 <img src="./figures/PCA_sin_batch.png" style="width: 300px;"/> <img src="./figures/scree_sin_batch.png" style="width: 300px;"/>
 :::
+
+En conclusión, la aplicación de la corrección de batch permitió reducir el ruido técnico, logrando que los grupos experimentales se agruparan mejor y facilitando una interpretación más limpia de los cambios en la expresión génica.
 
 ### PCA con clusters denotados
 
@@ -512,13 +541,95 @@ Se realizó una normalización de Transcritos por Millón (TPM) y por Z-score. P
 ![](./figures/PCA_sin_batchelipses.pdf)
 :::
 
+## Analisis de expresion diferencial y analisis de enriquecimiento
+
+Posterior a corregir el el batch effect, se hizo un analisis de expresion diferencial para encontrar genes diferencialmente expresados en estos grupos. Dado que tenemos 3, se realizarán 3 analisis para las distintas combinaciones de grupos: A1G_vs_GC, MG_vs_A1G, MG_vs_GC. Se utilizó un nivel de significancia de un p-value corrected \> 0.05. Además de buscar solo genes los cuales esten diferencialmente expresados en más o menos dos unidades. A continuacion se reportan los resultados:
+
+-   Para A1G_vs_GC se encontraron 21 genes significativos diferencialmente expresados
+
+-   Para MG_vs_A1G se encontraron se encontraron 3 genes significativos diferencialmente expresados. Esto sera un dato interesante para la discusion
+
+-   Finalmente, para MG_vs_GC se encontraron 67 genes significativos diferencialmente expresados
+
+Posteriormente, se hizo un analisis de enriquecimiento para los genes diferencialmente exppesados dentro de 3 bases de tados, las cuales incluyen a KEGG y Reactome. Los resultados fueron los siguientes:
+
+**Para A1G vs GC**
+
+Resultados del analisis de eenriquecimiento para los genes diferencialmente expresados sobreregulados entre ratones en la estacion espacial internacional y en la tierra, la ruta que mas predomina es el metabolismo del retinol
+
+```{r}
+knitr::include_graphics('./figures/barplotUP_GO_A1G_vs_GC-1.png')
+```
+
+Resultados del analisis de enriquecimiento para genes diferencielmente expresados subregulados entre ratones en la estacion espacial internacional y en la tierra, observamos que mayormente predominan son relacionadas a la biosintesis de los lipidos
+
+```{r}
+knitr::include_graphics('./figures/barplotDOWN_GO_A1G_vs_GC-1.png')
+```
+
+Resultados del manhatan plot comparando genes sobreregulados de los subrregulados mientras más arriba se encuentren en el eje y más significativos son y los categoriza según las bases de datos `GO:BP = Gene Ontology Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome`
+
+```{r}
+knitr::include_graphics('./figures/ManhattanGO_A1G_vs_GC.png')
+```
+
+**Para MG_vs_A1G**
+
+Resultados del analisis de eenriquecimiento para los genes diferencialmente expresados sobreregulados entre ratones entre microgravedad y la estacion espacial internacional
+
+```{r}
+knitr::include_graphics('./figures/barplotDOWN_GO_MG_vs_A1G.png')
+```
+
+Resultados del analisis de enriquecimiento para genes diferencielmente expresados subregulados entre ratones entre microgravedad y la estacion espacial internacional
+
+```{r}
+knitr::include_graphics('./figures/barplotUP_GO_MG_vs_A1G.png')
+```
+
+Resultados del manhatan plot comparando genes sobreregulados de los subrregulados mientras más arriba se encuentren en el eje y más significativos son y los categoriza según las bases de datos `GO:BP = Gene Ontology Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome`
+
+```{r}
+knitr::include_graphics('./figures/ManhattanGO_MG_vs_A1G.png')
+```
+
+**Para MG_vs_GC**
+
+Resultados del analisis de eenriquecimiento para los genes diferencialmente expresados sobreregulados entre ratones entre la tierra y microgravedad
+
+```{r}
+knitr::include_graphics('./figures/barplotDOWN_GO_MG_vs_GC.png')
+```
+
+Resultados del analisis de enriquecimiento para genes diferencielmente expresados sobreregulados entre ratones entre la tierra y microgravedad
+
+```{r}
+knitr::include_graphics('./figures/barplotUP_GO_MG_vs_GC.png')
+```
+
+Resultados del manhatan plot comparando genes sobreregulados de los subrregulados mientras más arriba se encuentren en el eje y más significativos son y los categoriza según las bases de datos `GO:BP = Gene Ontology Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome`
+
+```{r}
+knitr::include_graphics('./figures/ManhattanGO_MG_vs_GC.png')
+```
+
 # Discusión de los resultados
 
-Tras el análisis de la expresión de genes y los resultados del paper, se observa cómo el viaje al espacio provoca un gran estrés a los seres vivos, particularmente para el riñón. Como se menciona en el artículo, el riñón es el órgano más afectado y con mayor expresión diferencial de genes al someterse a viajes espaciales. Se estudió cómo los cambios de gravedad y condiciones ambientales en el espacio provocan cambios en las rutas metabólicas. Los compuestos de azufre, al intentar eliminar los radicales libres, se consumen masivamente en el organismo, provocando una mayor expresión de genes asociados al estrés oxidativo. También se observa cómo hay una menor capacidad reductora del organismo.
+Tras el análisis de la expresión de genes y los resultados del paper, se observa cómo el viaje al espacio provoca un gran estrés a los seres vivos, particularmente para el hígado. Como se menciona en el artículo, el hígado es el órgano más afectado y con mayor expresión diferencial de genes al someterse a viajes espaciales.
 
-Al comparar dichos resultados con otros artículos e investigaciones, se encontraron conclusiones similares. En el artículo de Vinken, se encontró cómo los viajes espaciales provocan cambios negativos en la función hepática: inflamación y estrés oxidativo. Se confirma una reducción en los niveles de antioxidantes de azufre. Otro estudio, de Blaber et. al (2017) utilizó ratones para demostrar que los viajes espaciales provocan mayor estrés oxidativo en los organismos. Ambos artículos mencionan al gen Gclc, como parte de la respuesta compensatoria a dicho estrés. Por último, otro estudio de Mhatre et al. (2022), que utilizó a la especie Drosophila melanogaster, confirma que el cambio al ambiente espacial provocan mayor estrés oxidativo, además de que someter a las especies a gravedad artificial similar a la terrestre, podría ayudar a mitigar dichos efectos. Además, también se encontró enriquecimiento en las rutas de metabolismo del glutatión.
+Tener grupos de A1G y de MG, ayuda a separar el efecto de la microgravedad y del viaje espacial, ya que el grupo A1G sufrió estrés por estar en el espacio, pero no se vio muy afectado por la gravedad. Por un lado, en el grupo de A1G se encontraba subexpresado el metabolismo hepático de los lípidos, posiblemente debido al estrés oxidativo. Además, los resultados hacen sentido cuando se analizan los genes sobreexpresados, ya que el principal de ellos es el metabolismo de retinoides, asociado a la detoxificación hepática. Esto se debe a que los radicales libres en el espacio obligan al organismo a buscar medidas de detoxificación.
 
-Por lo tanto, se puede afirmar que gran parte de los cambios metabólicos en los compuestos de azufre se debe a la baja gravedad. Al intentar compensarlo, se sobreexpresan genes relacionados a la producción de antioxidantes y la síntesis de glutatión. Por otro lado, se demuestra cómo se pueden compensar estos efectos mediante gravedad artificial, lo cual confirma el objetivo de este grupo 1g.
+En cambio, si se analizan las funciones subexpresadas para los ratones bajo microgravedad, respecto a aquellos en la Tierra (control), se encuentran p-valores muy altos para procesos anabólicos y procesamiento de lípidos, probablemente por el estrés oxidativo (similar a A1G). Si se analizan los genes sobreexpresados en los ratones sometidos a microgravedad y se comparan a los de los ratones en la Tierra, se encuentra un patrón muy similar al de A1G, ya que hay mayor síntesis de retinoides, además de síntesis de hormonas esteroideas. Otro mecanismo sobreexpresado, es la síntesis de taurina, un antioxidante de azufre muy importante.
+
+Se estudió cómo los cambios de gravedad y condiciones ambientales en el espacio provocan cambios en las rutas metabólicas. Los compuestos de azufre, al intentar eliminar los radicales libres, se consumen masivamente en el organismo, provocando una mayor expresión de genes asociados al estrés oxidativo. También se observa cómo hay una menor capacidad reductora del organismo. Sin embargo, los cambios más significativos respecto a los mecanismos de azufre, ocurren al comparar los ratones MG contra A1G, ambos en el espacio.
+
+En este caso, se encuentra sobreexpresada la síntesis de compuestos de azufre, por lo que se podría concluir que la gravedad tiene mayor efecto en la producción y gasto de azufre, mientras que las condiciones espaciales, con mayor cantidad de radicales libres, provocan que haya un aumento del metabolismo y detoxificación del cuerpo. Por lo tanto, es probable que los cambios metabólicos en los compuestos de azufre se deban a la baja gravedad. Al intentar compensarlo, se sobreexpresan genes relacionados a la producción de antioxidantes y la síntesis de glutatión. Además, se demuestra cómo se pueden compensar estos efectos mediante gravedad artificial, lo cual confirma el objetivo de este grupo 1g. Al comparar dichos resultados con otros artículos e investigaciones, se encontraron conclusiones similares.
+
+En el artículo de Vinken, se encontró cómo los viajes espaciales provocan cambios negativos en la función hepática: inflamación y estrés oxidativo. Se confirma una reducción en los niveles de antioxidantes de azufre. Otro estudio, de Blaber et. al (2017) utilizó ratones para demostrar que los viajes espaciales provocan mayor estrés oxidativo en los organismos. Ambos artículos mencionan al gen Gclc, como parte de la respuesta compensatoria a dicho estrés. Por último, otro estudio de Mhatre et al. (2022), que utilizó a la especie Drosophila melanogaster, confirma que el cambio al ambiente espacial provocan mayor estrés oxidativo, además de que someter a las especies a gravedad artificial similar a la terrestre, podría ayudar a mitigar dichos efectos.
+
+Además, también se encontró enriquecimiento en las rutas de metabolismo del glutatión. Esto tiene sentido porque en el grupo de los organismos con gravedad artificial, si bien tuvieron expresiones similares a las del grupo MG, no tuvieron valores tan altos o exagerados. Finalmente, es importante mencionar que hay ciertas limitaciones en este análisis, ya que el artículo se centra en metabolitos sulfurados, lo cual podría ser analizado mediante metabolómica. Tener un análisis de RNA es bastante útil, pero no da un panorama completo de las rutas metabólicas asociadas a los cambios provocados por el viaje espacial.
+
+Es posible que algunos genes no cambien su expresión, pero el metabolito sí actúe de forma muy diferente, ya sea degradándose o teniendo mayor actividad. Para análisis posteriores, se podría integrar la transcriptómica con estudios metabolómicos y proteómicos para relacionar directamente la expresión génica con los cambios observados en metabolitos de azufre.
 
 ## Referencias
 
