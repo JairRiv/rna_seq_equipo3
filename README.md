@@ -20,9 +20,13 @@
 • Jair Emiliano Contreras Rivera (jcontreras): [jairivera322\@gmail.com](mailto:jairivera322@gmail.com)
 
 ### Abstract
-Para este análisis de RNA-seq, se utilizaron datos de un estudio que compara transcriptomas hepáticos de ratones bajo tres condiciones: ratones sometidos a microgravedad en el espacio durante 30 días, ratones en el espacio sometidos a gravedad artificial simulando la Tierra durante 30 días y un control de ratones en la Tierra.
+Para este análisis de RNA-seq, se compararon transcriptomas hepáticos de ratones bajo tres condiciones: microgravedad real (espacio, 30 días), gravedad artificial en Tierra y un grupo control en Tierra. Se analizaron datos obtenidos del BioProject PRJNA1005192, compuesto por nueve transcriptomas de hígado paired-end de mRNA enriquecida por Poly(A) y secuenciada con Illumina NovaSeq 6000, con tres réplicas biológicas por condición y una profundidad de secuenciación de entre 14.4 y 25.9 millones de lecturas de 300 pb promedio.
 
-Se analizaron datos transcriptómicos de RNA-seq obtenidos del BioProject PRJNA1005192 con nueve transcriptomas de hígado paired-end enriquecidas para mRNA Poly(A), secuenciadas con Illumina NovaSeq 6000. Cada condición contó con tres réplicas biológicas y una profundidad de secuenciación de entre 14.4 y 25.9 millones de lecturas, con longitud promedio de 300 pb. Nuestro análisis permitió explorar cambios en la expresión génica relacionados con la adaptación fisiológica hepática frente a condiciones de microgravedad y gravedad artificial.
+El procesamiento se realizó mediante TrimGalore para control de calidad y recorte de adaptadores, combinando FastQC y Cutadapt de forma automatizada. La cuantificación se realizó con Salmon mediante pseudoalineamiento basado en índices de k-meros, lo que permite una estimación precisa de la expresión sin alineamiento base a base, reduciendo el tiempo de cómputo significativamente.
+
+Ambas herramientas fueron integradas en un pipeline reproducible con Nextflow. Posteriormente, se aplicó una corrección de batch effect con limma mediante regresión lineal sobre la matriz de expresión normalizada. El análisis de expresión diferencial se realizó con DESeq2, herramienta basada en un modelo binomial negativo diseñada para datos de conteos de RNA-seq con robusto desempeño en experimentos con pocas réplicas. Finalmente, el análisis de enriquecimiento funcional se realizó con g:Profiler consultando Gene Ontology y KEGG para identificar procesos biológicos y vías metabólicas enriquecidas.
+
+El análisis identificó cambios en la expresión génica asociados a la adaptación fisiológica hepática frente a condiciones de microgravedad y gravedad artificial, con alteraciones en vías relacionadas a funciones hepáticas centrales. Adicionalmente, se observó una modificación en la expresión de genes vinculados a la producción de antioxidantes, en aparente compensación al agotamiento de compuestos de azufre, evidenciando el impacto de los cambios gravitacionales sobre la función hepática.
 
 ### Estrutura del repositorio
 
