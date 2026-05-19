@@ -48,7 +48,7 @@ Este repositorio contiene una estructura diferente a la de Ken. Para observar la
   - [`scree_con_batch.png`](figures/scree_con_batch.png): La imagen muestra el scree plot (varianza) del PCA antes de la corrección de batch
   - [`scree_sin_batch.png`](figures/scree_sin_batch.png): La imagen muestra el scree plot del PCA con la corrección de batch
   - [`PCA_sin_batch.png`](figures/PCA_sin_batch.png): La imagen muestra el PCA sin los efectos del batch
-  - [`PCA_sin_batch_elipses.pdf`](figures/PCA_sin_batch_elipses.pdf): La imagen muestra el PCA sin los efectos del batch y con los clusters identificados
+  - [`PCA_sin_batchelipses.png`](figures/PCA_sin_batchelipses.png): La imagen muestra el PCA sin los efectos del batch y con los clusters identificados
   - [`Nf_workflow.jpg`](figures/Nf_workflow.jpg): Diagrama de flujo de nuestro trabajo
   - [`post_trimming_adapter_content.png`](figures/post_trimming_adapter_content.png): Distribución del contenido de adaptadores post trimming
   - [`post_trimming_gc_content.png`](figures/post_trimming_gc_content.png): Contenido de GC en el multiqc después de quitar sesgo de GC por PCR
