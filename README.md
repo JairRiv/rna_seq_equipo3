@@ -178,7 +178,32 @@ Del pseudoalineamiento con Salmon se obtiene por muestra un archivo quant.sf con
 
 ### Explicacion del pipeline general: 
 
-1. Descarga de los datos desde EBI: 
+ 1. Descarga de las secuencias crudas: Se descargan los datos de secuenciación raw (fastq) desde la base de datos EBI
+   - Script: [`scripts/download_data/download_data.sh`](scripts/download_data/download_data.sh)
+   - Logs: [`scripts/out_logs/DownloadData_1397.err`](scripts/out_logs/DownloadData_1397.err) y [`scripts/out_logs/DownloadData_1397.out`](scripts/out_logs/DownloadData_1397.out)
+   - Output: Archivos fastq.gz para cada muestra en el directorio `data/raw/`
+
+ 2. Control de calidad de las muestras: Se evalúa la calidad de las secuencias crudas usando FastQC, generando reportes HTML individuales. MultiQC agrega estos reportes en uno solo
+   - Se utilizó FastQC (para este analisis, por lo que no se corrió script
+   - Output: Reportes HTML individuales y reporte global MultiQC con métricas de calidad
+
+ 3. Trimming y pseudoalineamiento con Nextflow: Se ejecuta el pipeline nf-core/rnaseq que realiza:
+     - Trimming: TrimGalore elimina adaptadores y bases de baja calidad
+     - Pseudoalineamiento: Salmon cuantifica la abundancia de transcritos usando el genoma de referencia GRCm38
+   - Script: [`scripts/rna_nextflow/rna_nextflow.sh`](scripts/rna_nextflow/rna_nextflow.sh)
+   - Logs: [`scripts/out_logs/rnaseq_1478.err`](scripts/out_logs/rnaseq_1478.err) y [`scripts/out_logs/rnaseq_1478.out`](scripts/out_logs/rnaseq_1478.out)
+
+ 4. Importación de datos a R y normalización: Se importan los datos de Salmon usando tximport y se realiza la normalización de la matriz de conteos
+   - Script: [`scripts/normalizacion_salmon/normalizacion_salmon.r`](scripts/normalizacion_salmon/normalizacion_salmon.r)
+   - Logs: [`scripts/out_logs/normalizacion_1792.err`](scripts/out_logs/normalizacion_1792.err) y [`scripts/out_logs/normalizacion_1792.out`](scripts/out_logs/normalizacion_1792.out)
+
+ 5. PCA y corrección de batch effect: Se realiza Análisis de Componentes Principales (PCA) para visualizar la varianza y se corrige el batch effect usando limma
+   - Script: [`scripts/normalizacion_salmon/deseq2.r`](scripts/normalizacion_salmon/deseq2.r)
+   - Logs: [`scripts/out_logs/deseq2_1818.err`](scripts/out_logs/deseq2_1818.err) y [`scripts/out_logs/deseq2_1818.out`](scripts/out_logs/deseq2_1818.out)
+
+ 6. Análisis de expresión diferencial: Se utiliza DESeq2 para identificar genes diferencialmente expresados (DEG) entre las tres condiciones: control (GC), gravedad artificial (A1G) y microgravedad (MG). Se realizan comparaciones pareadas
+   - Script: [`scripts/normalizacion_salmon/deseq2.r`](scripts/normalizacion_salmon/deseq2.r)
+   - Logs: [`gene_ontology_1817.err`](scripts/out_logs/gene_ontology_1817.err) y [`gene_ontology_1817.out`](scripts/out_logs/gene_ontology_1817.out) corresponden al script de `gene_ontology.sh` de la carpeta `gene_ontology/`
 
 
 ### Versiones
