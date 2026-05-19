@@ -69,6 +69,7 @@ Este repositorio contiene una estructura diferente a la de Ken. Para observar la
   - [`barplotUP_GO_MG_vs_A1G.png`](figures/barplotUP_GO_MG_vs_A1G.png): Gráfica de las funciones biológicas sobreexpresadas en microgravedad respecto a gravedad artificial ,clasifica según `Biological Process, KEGG = pathways metabólicos/señalización` y `REAC = Reactome`
   - [`barplotUP_GO_MG_vs_GC.png`](figures/barplotUP_GO_MG_vs_GC.png): Gráfica de las funciones biológicas sobreexpresadas en microgravedad respecto al control, clasifica según `Biological Process, KEGG = pathways metabólicos/señalización, REAC = Reactome` y `WP = WikiPathways`
 - [`Reporte_Equipo3_Rna_seq.qmd`](Reporte_Equipo3_Rna_seq.qmd): Es un archivo .qmd con toda la documentación del análisis, discusión, etc.
+- [`index.html`](index.html): Contiene el reporte renderizado en html para publicar la pagina web
 - [`metadatas.csv`](metadatas.csv): Este archivo contiene los metadatos del análisis
 - [`scripts/`](scripts/): Este directorio contiene todos los scripts para realizar el análisis.
   - [`download_data/`](scripts/download_data/): Contiene el script utilizado para descargar los transcritos crudos mandado como job
