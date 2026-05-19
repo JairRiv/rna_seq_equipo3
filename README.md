@@ -46,6 +46,26 @@ Este repositorio contiene una estructura diferente a la de de Ken, para observar
   - `PCA_sin_batch.pdf`: La imagen muestra el PCA sin los efectos del batch
   - `PCA_sin_batch_elipses.pdf`: La imagen muestra el PCA sin los efectos del batch y con los clusters identificados
   - `Nf_workflow.jpg`: diagrama de flujo de nuestro trabajo
+  - `post_trimming_adapter_content.png`: Diostribución del contenido de adaptadores post trimming 
+  - `post_trimming_gc_content.png`: Contenido de GC en el multiqc después quitar sesgo de gc por PCR
+  - `post_trimming_general_statistics.png`: Estadísticas generales del multiqc post trimming
+  - `post_trimming_overrepresented_Seq.png`: Si es que hay secuencias sobrerrepresentadas después del trimming
+  - `post_trimming_per_base_N_content.png`:Indica si hay alguna base no identificada
+  - `post_trimming_per_base_seq_content.png`: Muestra el contenido por base en el multiqc
+  - `post_trimming_per_seq_quality.png`: Indica la calidad por secuencias post trimming
+  - `post_trimming_seq_duplication.png`: Si hay secuencias duplicadas post trimming, aquí se muestran
+  - `post_trimming_seq_length_distribution.png`: Muestra la distribución en el tamaño de las secuencias post trimming
+  - `post_trimming_sequence_quality.png`: La imagen contiene la claidad de las secuencias post trimming
+  - `SeqLenOverAll.png`: Es la distribución del tamaño de las secuencias de los datos procesados, que varían entre 40-300 bp
+  - `ManhattanGO_A1G_vs_GC.pdf`
+  - `ManhattanGO_MG_vs_A1G.pdf`
+  - `ManhattanGO_MG_vs_GC.pdf`
+  - `barplotDOWN_GO_A1G_vs_GC`
+  - `barplotDOWN_GO_MG_vs_A1G`
+  - `barplotDOWN_GO_MG_vs_GC`
+  - `barplotUP_GO_A1G_vs_GC`
+  - `barplotUP_GO_MG_vs_A1G`
+  - `barplotUP_GO_MG_vs_GC`
 - `Reporte_Equipo3_Rna_seq.qmd`: Es un archivo .qmd con toda la documentación del análisis, discusión, etc.
 - `metadatas.csv`: Este archivo contiene los metadatos del análisis
 
@@ -119,7 +139,7 @@ Explicación:
 - `pseudo_aligner`: usa el pseudoalineamiento deseado en este caso Salmon pero pudo ser Kallisto por ejemplo.
 - `skip_alignment`: por deafault hace un alineamiento tipo STAR, esta opción sirve para evitar que realice este paso.
 - `trimmer trimgalore`: realiza trimming quita adaptadores, es más lento qeu trimmomatic pero se especializa en adaptadores por ende esta elección.
-- `extra_salmon_quant_args`:
+- `extra_salmon_quant_args`: evita el sesgo de GC provocados por la amplificación por PCR
 - `resume`: si se detiene por algún fallo, podemos volver a correr y retomará a partir del donde se quedó sin necesidad de repetir todo desde un inicio.
 
 Inputs de nextflow:
