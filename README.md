@@ -80,6 +80,10 @@ Este repositorio contiene una estructura diferente a la de de Ken, para observar
       - `normalizacion_1792.err` y `normalizacion_1792.out` corresponden al script de `deseq2.r` de la carpeta `normalizacion_salmon/`
       - `rnaseq_1478.err` y `rnaseq_1478.out` corresponden al script de `rna_nextflow.sh` de la carpeta `rna_nextflow/`
       - `gene_ontology_1817.err` y `gene_ontology_1817.out` corresponden al script de `gene_ontology.sh` de la carpeta `gene_ontology/`
+- `DEG/`: Directorio que contiene los reusltados del análisis de expresión diferencial
+    - `DEG_*.csv` : resultados completos de DESeq2, todos los genes con sus estadísticas (log2FoldChange, pvalue, padj, etc.), sin ningún filtro
+    - `SIG_*.csv` : subconjunto de genes ya filtrado con padj < 0.05 y |LFC| => 2 (todos los genes son significativos).
+    - `res_*.RData`: Son los resultados de DESeq2 guardados en formato de R, para recargar los datos en R sin tener que correr DESeq2 de nuevo.
     
 
 | biosample | grupo     | condicion                          | sample_ID           | srr_ID      |
