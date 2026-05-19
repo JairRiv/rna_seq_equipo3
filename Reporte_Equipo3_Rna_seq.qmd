@@ -538,7 +538,7 @@ En conclusión, la aplicación de la corrección de batch permitió reducir el r
 ### PCA con clusters denotados
 
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
-![](./figures/PCA_sin_batchelipses.pdf)
+![](./figures/PCA_sin_batchelipses.png)
 :::
 
 ## Analisis de expresion diferencial y analisis de enriquecimiento
