@@ -57,15 +57,13 @@ Este repositorio contiene una estructura diferente a la de de Ken, para observar
   - `post_trimming_seq_length_distribution.png`: Muestra la distribución en el tamaño de las secuencias post trimming
   - `post_trimming_sequence_quality.png`: La imagen contiene la claidad de las secuencias post trimming
   - `SeqLenOverAll.png`: Es la distribución del tamaño de las secuencias de los datos procesados, que varían entre 40-300 bp
-  - `ManhattanGO_A1G_vs_GC.pdf`
-  - `ManhattanGO_MG_vs_A1G.pdf`
-  - `ManhattanGO_MG_vs_GC.pdf`
-  - `barplotDOWN_GO_A1G_vs_GC`
-  - `barplotDOWN_GO_MG_vs_A1G`
-  - `barplotDOWN_GO_MG_vs_GC`
-  - `barplotUP_GO_A1G_vs_GC`
-  - `barplotUP_GO_MG_vs_A1G`
-  - `barplotUP_GO_MG_vs_GC`
+  - `ManhattanGO_A1G_vs_GC.pdf`, `ManhattanGO_MG_vs_A1G.pdf` y `ManhattanGO_MG_vs_GC.pdf`: plots de enriquecimiento funcional que compara los genes diferencialmente expresados que comparten los pares de gruppos, y categoriza en upregulated y downregulated, mientras más arriba se encuentren en el eje y más significativos son y los categoriza según las bases de datos `GO:BP = Gene Ontology Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome` y `WP = WikiPathways`
+  - `barplotDOWN_GO_A1G_vs_GC`: gráfica de las funciones biológicas subexpresadas en gravedad artificial respecto al control, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización` y `WP = WikiPathways`
+  - `barplotDOWN_GO_MG_vs_A1G`: gráfica de las funciones biológicas subexpresadas en microgravedad respecto a gravedad artificial, clasifica según `Biological Process` y `WP = WikiPathways`
+  - `barplotDOWN_GO_MG_vs_GC`: gráfica de las funciones biológicas subexpresadas en microgravedad respecto al control, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome` y `WP = WikiPathways`
+  - `barplotUP_GO_A1G_vs_GC`: gráfica de las funciones biológicas sobreexpresadas en gravedad artificial respecto al control, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización` y `REAC = Reactome`
+  - `barplotUP_GO_MG_vs_A1G`: gráfica de las funciones biológicas sobreexpresadas en microgravedad respecto a gravedad artificial, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización` y `REAC = Reactome`
+  - `barplotUP_GO_MG_vs_GC`: gráfica de las funciones biológicas sobreexpresadas en microgravedad respecto al control, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome` y `WP = WikiPathways`
 - `Reporte_Equipo3_Rna_seq.qmd`: Es un archivo .qmd con toda la documentación del análisis, discusión, etc.
 - `metadatas.csv`: Este archivo contiene los metadatos del análisis
 
