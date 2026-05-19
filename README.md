@@ -30,7 +30,7 @@ El análisis identificó cambios en la expresión génica asociados a la adaptac
 
 ### Estrutura del repositorio
 
-Este repositorio contiene una estructura diferente a la de de Ken, para observar la documentación de la estrutura de Ken, dirgirse a `Reporte_Equipo3_Rna_seq.qmd`. Las carpetas con su descripción se muestran a continuación
+Este repositorio contiene una estructura diferente a la de de Ken, para observar la documentación de la estrutura de Ken, dirgirse a `Reporte_Equipo3_Rna_seq.qmd`. Las carpetas con su descripción se muestran a continuación así como el pie de imagen de cada una de ellas
 
 - `figures/`: Este directorio contiene todas las imágenes generadas durante el análisis y la documentación
   - `antes_trimming_multqic_mean_quality.png`: Esta imagen es el resultado del multiqc en la sección mean quality antes de hacer el trimming
