@@ -127,10 +127,75 @@ datatable(
 
 ## Abstract y resumen de nuestro trabajo
 
-Para este análisis de RNA-seq, se utilizaron datos de un estudio que compara transcriptomas hepáticos de ratones bajo tres condiciones diferentes: ratones expuestos a gravedad artificial en la Tierra, ratones sometidos a microgravedad en el espacio durante 30 días y un control de ratones en la Tierra.
+Para este análisis de RNA-seq, se compararon transcriptomas hepáticos de ratones bajo tres condiciones: microgravedad real (espacio, 30 días), gravedad artificial en Tierra y un grupo control en Tierra. Se analizaron datos obtenidos del BioProject PRJNA1005192, compuesto por nueve transcriptomas de hígado paired-end de mRNA enriquecida por Poly(A) y secuenciada con Illumina NovaSeq 6000, con tres réplicas biológicas por condición y una profundidad de secuenciación de entre 14.4 y 25.9 millones de lecturas de 300 pb promedio.
 
-Se analizaron datos transcriptómicos de RNA-seq obtenidos del BioProject PRJNA1005192 con nueve transcriptomas de hígado paired-end enriquecidas para mRNA Poly(A), secuenciadas con Illumina NovaSeq 6000. Cada condición contó con tres réplicas biológicas y una profundidad de secuenciación de entre 14.4 y 25.9 millones de lecturas, con longitud promedio de 300 pb. Nuestro análisis permitió explorar cambios en la expresión génica relacionados con la adaptación fisiológica hepática frente a condiciones de microgravedad y gravedad artificial.
-Tras el análisis transcriptómico, se encontró un cambio en la expresión de genes asociados a la producción de antioxidantes, compensando el agotamiento de compuestos de azufre.
+El procesamiento se realizó mediante TrimGalore para control de calidad y recorte de adaptadores, combinando FastQC y Cutadapt de forma automatizada. La cuantificación se realizó con Salmon mediante pseudoalineamiento basado en índices de k-meros, lo que permite una estimación precisa de la expresión sin alineamiento base a base, reduciendo el tiempo de cómputo significativamente.
+
+Ambas herramientas fueron integradas en un pipeline reproducible con Nextflow. Posteriormente, se aplicó una corrección de batch effect con limma mediante regresión lineal sobre la matriz de expresión normalizada. El análisis de expresión diferencial se realizó con DESeq2, herramienta basada en un modelo binomial negativo diseñada para datos de conteos de RNA-seq con robusto desempeño en experimentos con pocas réplicas. Finalmente, el análisis de enriquecimiento funcional se realizó con g:Profiler consultando Gene Ontology y KEGG para identificar procesos biológicos y vías metabólicas enriquecidas.
+
+El análisis identificó cambios en la expresión génica asociados a la adaptación fisiológica hepática frente a condiciones de microgravedad y gravedad artificial, con alteraciones en vías relacionadas a funciones hepáticas centrales. Adicionalmente, se observó una modificación en la expresión de genes vinculados a la producción de antioxidantes, en aparente compensación al agotamiento de compuestos de azufre, evidenciando el impacto de los cambios gravitacionales sobre la función hepática.
+
+## Control de calidad de las secuencias antes del trimming
+
+#### Calidad de las secuencias en muestras GC, A1G y MG mice
+
+Se analizó la calidad de las secuencias en los datos crudos, obteniendo un contenido de GC en un rango de 48 - 50% , con una distribución normal y una profundidad de lectura en un rango de 14.4 M a 25.9 M secuencias.
+
+Las muestras presentan una calidad óptima, con valores dentro de la zona verde y un puntaje Phred de 30 en todas las muestras.
+
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trimming_multqic_mean_quality.png" style="width: 300px;"/> <img src="./figures/antes_trimming_q_scores.png" style="width: 300px;"/>
+:::
+
+#### Proporción de cada base por posición
+
+En la gráfica "Per Sequence Quality Scores", la calidad está en 30 para todas las lecturas. Esto es lo esperado debido a que el secuenciador Illumina NovaSeq 6000 tiene una calidad muy alta.
+
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trimming_per_base_seq_content.png" style="width: 900px;"/>
+:::
+
+#### Variaciones en el porcentaje de %GC en todas las muestras
+
+Esta gráfica está dentro de lo esperado para un experimento de RNA seq, se observa homogeneidad a lo largo de la gráfica, excepto al inicio, lo cual es lo esperado debido al ruido biológico.
+
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trimming_gc_percent.png" style="width: 600px;"/>
+:::
+
+#### 
+
+#### Contenido de N por base
+
+En el mRNA de ratón, el contenido de GC esperado debería estar cercano a 50%, debido a que estamos capturando exones y genes expresados, lo cual puede aumentar la proporción esperada. Se observa un ligero pico lo cual puede ser contaminacion. Esta se espera eliminar posterior al pseudoalineamiento por lo que no es nada para preocuparse
+
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trimming_per_base_n_content.png" style="width: 600px;"/>
+:::
+
+#### 
+
+#### Distribución de secuencias duplicadas y adaptadores
+
+El secuenciador identificó correctamente las bases en todas las posiciones de la secuenciación, por lo cual no hay ninguna posición donde la secuencia sea desconocida.
+
+Distribución de la longitud de secuencias: todas las muestras tienen una longitud de 150 bp, lo cual es lo esperado considerando que son paired-end. En total con ambas lecturas, obtendríamos la longitud de 300 bp.
+
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/antes_trim_sequence_dup_lev.png" style="width: 400px;"/> <img src="./figures/antes_triming_adapters.png" style="width: 400px;"/>
+:::
+
+Se observa la distribucion del contenido de los adaptadores, esto es normal porque no se he hecho trimming. Se observara esta grafica posterior a hacerlo y tener especial cuidado.
+
+#### Conclusión
+
+Los indicadores de MultiQC muestran una alta calidad, por lo cual los datos son adecuados para continuar con el procesamiento y análisis posterior. Las secuencias tienen una buena calidad en general, con calidad de secuencia de 30 en el Phred score y un contenido de %GC adecuado, además de que los nucleótidos no mapeados son prácticamente nulos. Aunque se observa picos en los niveles de secuencias duplicadas, el diseño del experimento sugiere que es normal (polyA y sobreexpresión en hígado).
+
+## Diagrama de flujo
+
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+<img src="./figures/Nf-workflow .jpg" style="width: 400px;"/>
+:::
 
 ## Descripción de nuestras rutas
 
@@ -144,9 +209,25 @@ Las carpetas siguen la siguiente estructura:
 
     -   **raw/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw`): En esta carpeta se guardaron las secuencias crudas extraídas de [ENA](https://www.ebi.ac.uk/ena/browser/view/PRJNA1005192) usando el ID del bioproject.
 
+    -   **counts/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/counts`\`): En esta carpeta se encuentran los conteos de los transcritos normalizados
+
+    -   **PCA/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/PCA`\`): Este directorio contiene los graficos del analisis de componentes principales antes y despues de la correccion por batch
+
+    -   **DEG/**(`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/DEG`\`): Esta carpeta contiene los resultados del analisis de expresion diferencial para cada grupo
+
+    -   **ORA/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/ORA`\`): Este directorio contiene los resultados del analisis de enriquecimiento para los genes diferencialmente expresados en formato `csv`\`
+
+        -   **figures/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/ORA/figures`\`): Esta carpeta contiene las graficas manhatan y los genes diferencialmente expresados para cada grupo
+
     -   **metadata.txt**: Es un archivo de texto que contiene la información de la tabla 2.
 
     -   **txi_salmon.RData**: Este archivo es un documento intermedio para importar los datos a R.
+
+    -   **TPM_matrix.csv** es la matriz de transcritos por millón para todas las muestras sin ningún procesamiento adicional
+
+    -   **processedTPM_matrix.csv**: Este documento es el numero de trasncritos por millon para todas las muestras analizadas, normalizado por Z-score y utilizado para hacer el PCA
+
+    -   **txi_salmon.RData:** Es el objeto de R generado por tximport que importa y contiene los resultados de cuantificación de Salmon para todas las muestras, sirviendo como input directo para DESeq2.
 
 -   **quality1/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality1`): Dentro de este directorio podemos encontrar los controles de calidad de las secuencias crudas.
 
@@ -212,65 +293,21 @@ Las carpetas siguen la siguiente estructura:
 
         -   **tx2gene.tsv**: Muestra la relación entre transcritos y gen
 
-Se analizó la calidad de las secuencias en los datos crudos, obteniendo un contenido de GC en un rango de 48 - 50% , con una distribución normal y una profundidad de lectura en un rango de 14.4 M a 25.9 M secuencias.
+-   **scripts/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts`\`): Este directorio contiene todos los scripts para realizar el analisis.
 
-Las muestras presentan una calidad óptima, con valores dentro de la zona verde y un puntaje Phred de 30 en todas las muestras.
+    -   **download_data/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/download_data/`): Contiene el script utilizado para descargar los transcritos crudos
 
-::: {style="display: flex; gap: 10px; align-items: flex-start;"}
-<img src="./figures/antes_trimming_multqic_mean_quality.png" style="width: 300px;"/> <img src="./figures/antes_trimming_q_scores.png" style="width: 300px;"/>
-:::
+    -   **rna_nextflow/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/rna_nextflow/)` : Dentro de esta carpeta se encuentran los scripts utilizados para correr el trimming y el pseudoalinemiento usando nextflow
 
-Calidad de las secuencias en muestras GC, A1G y MG mice
+    -   **normalizacion_salmon/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/normalizacion_salmon`): Dendro de esta carpeta podremos encontrar dos scripts
 
-En la gráfica "Per Sequence Quality Scores", la calidad está en 30 para todas las lecturas. Esto es lo esperado debido a que el secuenciador Illumina NovaSeq 6000 tiene una calidad muy alta.
+        -   normalizacion_salmon: Este script sirve se enfoca en importar los datos usando tximport
 
-::: {style="display: flex; gap: 10px; align-items: flex-start;"}
-<img src="./figures/antes_trimming_per_base_seq_content.png" style="width: 900px;"/>
-:::
+        -   deseq2: Este codigo integra informacion de el script anterior para hacer el PCA, la corraccion de batch y el analisis de expresion diferencial
 
-Proporción de cada base por posición
+    -   **gene_ontology/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/gene_ontology`): Este script contiene el codigo para hacer el analisis de enriquecimiento
 
-Esta gráfica está dentro de lo esperado para un experimento de RNA seq, se observa homogeneidad a lo largo de la gráfica, excepto al inicio, lo cual es lo esperado debido al ruido biológico.
-
-::: {style="display: flex; gap: 10px; align-items: flex-start;"}
-<img src="./figures/antes_trimming_gc_percent.png" style="width: 600px;"/>
-:::
-
-Variaciones en el porcentaje de %GC en todas las muestras
-
-En el mRNA de ratón, el contenido de GC esperado debería estar cercano a 50%, debido a que estamos capturando exones y genes expresados, lo cual puede aumentar la proporción esperada. Eso mismo es lo que observamos en la gráfica, donde el pico más alto está cercano a 50%.
-
-::: {style="display: flex; gap: 10px; align-items: flex-start;"}
-<img src="./figures/antes_trimming_per_base_n_content.png" style="width: 600px;"/>
-:::
-
-Contenido de N por base
-
-El secuenciador identificó correctamente las bases en todas las posiciones de la secuenciación, por lo cual no hay ninguna posición donde la secuencia sea desconocida.
-
-Distribución de la longitud de secuencias: todas las muestras tienen una longitud de 150 bp, lo cual es lo esperado considerando que son paired-end. En total con ambas lecturas, obtendríamos la longitud de 300 bp.
-
-::: {style="display: flex; gap: 10px; align-items: flex-start;"}
-<img src="./figures/antes_trim_sequence_dup_lev.png" style="width: 400px;"/> <img src="./figures/antes_triming_adapters.png" style="width: 400px;"/>
-:::
-
-### Calidad de las secuencias en las muestras
-l
-El contenido de adaptadores es adecuado ya que no sube a más del 2%.
-
-Por otro lado, aunque se observan varios picos en la distribución de los niveles de duplicados, el hecho de que todas las características estén bien, además del diseño del experimento, es decir, RNA seq de hígado de ratón separado por PolyA, sugiere que puede ser una señal real de expresión en lugar de un problema, sin embargo se tomará en cuenta para análisis posteriores.
-
-## Conclusión
-
-Los indicadores de MultiQC muestran una alta calidad, por lo cual los datos son adecuados para continuar con el procesamiento y análisis posterior. Las secuencias tienen una buena calidad en general, con calidad de secuencia de 30 en el Phred score y un contenido de %GC adecuado, además de que los nucleótidos no mapeados son prácticamente nulos. Aunque se observa picos en los niveles de secuencias duplicadas, el diseño del experimento sugiere que es normal (polyA y sobreexpresión en hígado).
-
-## Diagrama de flujo
-
-![](figures/diagramaFlujoRNA.jpeg)
-
-## Explicación de inputs y outputs
-
-### Inputs
+#### Documentacion de nextflow
 
 Se utilizó nextflow para tener control sobre el flujo del trabajo. Este nos permite automatizar y guardar los procedimientos en caso de que el trabajo se detenga. Para realizar la corrección con este programa tenemos que especificar distintos parámetros:
 
@@ -284,14 +321,20 @@ Se utilizó nextflow para tener control sobre el flujo del trabajo. Este nos per
 
 -   Algunas opciones incluidas para evitar errores fueron fijar Java 11 en el entorno de Nextflow y fijar una versión del pipeline de nf-core compatible con Java 11 (algunas requerían versiones superiores que no estaban disponibles)
 
-```{bash}
-#| eval: false
-#!/bin/bash #SBATCH --job-name=rnaseq_equipo3 #SBATCH --output=/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/out_logs/rnaseq_%j.out #SBATCH --error=/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/out_logs/rnaseq_%j.err #SBATCH --time=24:00:00 #SBATCH --cpus-per-task=2 #SBATCH --mem=8G
+``` bash
+#!/bin/bash
+#SBATCH --job-name=rnaseq_equipo3
+#SBATCH --output=/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/out_logs/rnaseq_%j.out
+#SBATCH --error=/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/out_logs/rnaseq_%j.err
+#SBATCH --time=24:00:00
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=8G
 
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.25.0.9-7.el9.x86_64 export PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.25.0.9-7.el9.x86_64
+export PATH=$JAVA_HOME/bin:$PATH
 
-module load nextflow/23.04.1 module load singularity/3.7.0
-
+module load nextflow/23.04.1
+module load singularity/3.7.0
 
 nextflow run nf-core/rnaseq \
     -revision 3.14.0 \
@@ -306,10 +349,33 @@ nextflow run nf-core/rnaseq \
     -resume
 ```
 
+Explicacion del codigo:
+
+-   `export java`: Nextflow usa java y se fijó el directorio pq había incompatibilidad de java
+
+-   `module load`: modulos a cargar nexftlow y singularity
+
+-   `profile singularity`: El comando dice que haga skip en revisar programas del cluster y vaya a singularity y aplique los programas que ya tiene.
+
+-   `input`: ruta absoluta de nuestra sampleesheet(CSV) que contiene metadata y rutas de las lecturas de secuenciación (FastQ).
+
+-   `outdir`: ruta absoluta de donde queremos los resultados.
+
+-   `genome`: a partir del nombre del genoma de referencia jalaŕa paths que ya lo tengan.
+
+-   `pseudo_aligner`: usa el pseudoalineamiento deseado en este caso Salmon pero pudo ser Kallisto por ejemplo.
+
+-   `skip_alignment`: por deafault hace un alineamiento tipo STAR, esta opción sirve para evitar que realice este paso.
+
+-   `trimmer trimgalore`: realiza trimming quita adaptadores, es más lento qeu trimmomatic pero se especializa en adaptadores por ende esta elección.
+
+-   `extra_salmon_quant_args`:
+
+-   `resume`: si se detiene por algún fallo, podemos volver a correr y retomará a partir del donde se quedó sin necesidad de repetir todo desde un inicio.
+
 Refiriendo al documento de input, se tiene que crear un documento csv que contenga la información de la ruta de las secuencias para cada muestra. Así como especificar la orientación de la transcirpción, en nuestro caso lo fijamos a automático.
 
-```{bash}
-#| eval: false
+``` bash
 sample,fastq_1,fastq_2,strandedness
 SAMN36978221_GC,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629473_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629473_2.fastq.gz,auto
 SAMN36978220_GC,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629472_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629472_2.fastq.gz,auto
@@ -322,38 +388,38 @@ SAMN36978214_MG,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data
 SAMN36978213_MG,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629465_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629465_2.fastq.gz,auto
 ```
 
-### Outputs
+Todos los resultados se van a guardar en **quality2/** (`/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2`) la estrucutra de las carpetas junto con cada salida fue previamente explicada. A contunuacion se menciona de forma breve los outputs:
 
-Los dos principales outputs de este pipeline son:
+Del control de calidad antes del trimming se obtienen reportes individuales por muestra en formato html ademas de un reporte global de MultiQC.
 
--   Las lecturas ya limpias de Trimgalore
+Del trimming con TrimGalore se obtiene por muestra un reporte de texto con el total de reads originales, el porcentaje de reads con adaptadores detectados, las bases removidas por baja calidad, las reads conservadas y el total de bases restantes. Además, se generan los FastQC resumidos un segundo reporte de MultiQC.
 
--   Una matriz que indica el conteo de genes por cada muestra y otras adicionales con el conteo por muestra individual
+Del pseudoalineamiento con Salmon se obtiene por muestra un archivo quant.sf con la abundancia y conteo a nivel de transcrito y un quant.genes.sf a nivel de gen ademas de matrices como TPM, longitudes de genes y transcritos para todas las muestras, además del archivo tx2gene.tsv con la relación transcrito-gen. Finalmente se incluye informacion sobre la trazabilidad del pipeline, como versiones, opciones o errores
 
 ## MultiQC posterior a la limpieza
 
 En general, la calidad de las secuencias se mantuvo. el contenido de %GC es similar en todas las muestras, manteniendo el rango entre 48-50%. De igual manera, el Phred Score es de 30 en toda la secuencia.
 
 ```{r, out.width="50%", fig.show="hold", echo = FALSE}
-knitr::include_graphics('/Users/romaan/Desktop/Captura de pantalla 2026-04-28 a la(s) 11.41.51 a.m..png')
+knitr::include_graphics('./figures/post_trimming_general_statistics.png')
 ```
 
 El único problema que podría haber es con el pico que se observa en el contenido de GC por secuencia. Mientras el promedio está cerca de 50%, se observa otro pico cerca de 37-38% de GC. Sin embargo, esta contaminación no debería preocuparnos tanto, ya que al momento de hacer el alineamiento del ratón, las secuencias que no correspondan (de la contaminación) no se alinearán.
 
 ```{r, out.width="50%", fig.show="hold", echo = FALSE}
-knitr::include_graphics('/Users/romaan/Desktop/Captura de pantalla 2026-04-28 a la(s) 11.40.04 a.m..png')
+knitr::include_graphics('./figures/post_trimming_gc_content.png')
 ```
 
 Podemos observar que la gráfica de los niveles de secuencias duplicadas también se mantuvieron.
 
 ```{r, out.width="50%", fig.show="hold", echo = FALSE}
-knitr::include_graphics('/Users/romaan/Desktop/Captura de pantalla 2026-04-28 a la(s) 11.41.21 a.m..png')
+knitr::include_graphics('./figures/post_trimming_seq_duplication.png')
 ```
 
 Por otro lado, el reporte muestra que se eliminaron correctamente los adaptadores, ya que no se encontraron muestras con contaminación de adaptadores ni con secuencias sobrerrepresentadas.
 
 ```{r, out.width="50%", fig.show="hold", echo = FALSE}
-knitr::include_graphics('/Users/romaan/Desktop/Captura de pantalla 2026-04-28 a la(s) 11.44.57 a.m..png')
+knitr::include_graphics('./figures/post_trimming_adapter_content.png')
 ```
 
 **Tamaño del read inicial (datos crudos) y final (datos procesados)**
@@ -366,7 +432,7 @@ Los reads procesados sin adaptadores tienen longitudes más variadas, desde 40-3
 
 ## Importación de datos en R
 
-Se realizó el siguiente script para la importación de los datos:
+Se realizó el siguiente script para la importación de los datos. Se usó la libreria tximport junto con deseq para importar los datos a R
 
 ```{bash}
 GNU nano 5.6.1                                                                              normalizacion_salmon.r                                                                                        
@@ -425,15 +491,11 @@ A partir de esto se obtuvo un total de 44677 transcritos.
 Dimensión del dataset: 109616 3
 
 # Análisis de componentes principales
-Se realizó una normalización de Transcritos por Millón (TPM), para posteriormente generar un PCA. El primer gráfico mostró que los datos ya presentaban una estructura coherente; los clusters correspondientes a las condiciones GC, A1G y MG eran claramente distinguibles, lo que indicaba una separación biológica sólida desde el comienzo. 
-En este punto, la primera componente principal (PC1) lograba explicar el 33% de la varianza total del experimento.
-Con el objetivo de optimizar la precisión del análisis, se procedió a realizar una corrección de batch effect, por medio de la librería Limma.
-Aunque el agrupamiento inicial era aceptable, tras este proceso de corrección, los clusters en el PCA se visualizaron de manera mucho más compacta y definida. Con esto se demuestra que la variación tenga una explicación biológica y no se deba a ruido o a variación en las corridas de secuenciación.
-La efectividad de esta corrección se observa en el aumento de la varianza explicada por los componentes: el valor de la PC1 ascendió del 33.3% al 46%, lo que demuestra que, tras eliminar el ruido técnico, la componente principal captura una mayor proporción de la variabilidad biológica.
-Es importante notar que, si bien el scree plot todavía muestra los mismos valores en la varianza, el análisis del PCA corregido confirma visualmente una mejora en la agrupación de los datos.
-En conclusión, la aplicación de la corrección de batch permitió reducir el ruido técnico, logrando que los grupos experimentales se agruparan mejor y facilitando una interpretación más limpia de los cambios en la expresión génica.
+
+Se realizó una normalización de Transcritos por Millón (TPM) y por Z-score. Para posteriormente generar un PCA. El primer gráfico mostró que los datos ya presentaban una estructura coherente los clusters correspondientes a las condiciones GC, A1G y MG eran claramente distinguibles, lo que indicaba una separación biológica sólida desde el comienzo. En este punto, la primera componente principal (PC1) lograba explicar el 33% de la varianza total del experimento. Con el objetivo de optimizar la precisión del análisis, se procedió a realizar una corrección de batch effect, por medio de la librería Limma. Aunque el agrupamiento inicial era aceptable, tras este proceso de corrección, los clusters en el PCA se visualizaron de manera mucho más compacta y definida. Con esto se demuestra que la variación tenga una explicación biológica y no se deba a ruido o a variación en las corridas de secuenciación. La efectividad de esta corrección se observa en el aumento de la varianza explicada por los componentes: el valor de la PC1 ascendió del 33.3% al 46%, lo que demuestra que, tras eliminar el ruido técnico, la componente principal captura una mayor proporción de la variabilidad biológica. Es importante notar que, si bien el scree plot todavía muestra los mismos valores en la varianza, el análisis del PCA corregido confirma visualmente una mejora en la agrupación de los datos. En conclusión, la aplicación de la corrección de batch permitió reducir el ruido técnico, logrando que los grupos experimentales se agruparan mejor y facilitando una interpretación más limpia de los cambios en la expresión génica.
 
 ### PCA antes de corrección
+
 ::: {style="display: flex; gap: 10px; align-items: flex-start;"}
 <img src="./figures/PCA_con_batch.png" style="width: 300px;"/> <img src="./figures/scree_con_batch.png" style="width: 300px;"/>
 :::
@@ -444,26 +506,28 @@ En conclusión, la aplicación de la corrección de batch permitió reducir el r
 <img src="./figures/PCA_sin_batch.png" style="width: 300px;"/> <img src="./figures/scree_sin_batch.png" style="width: 300px;"/>
 :::
 
+### PCA con clusters denotados
+
+::: {style="display: flex; gap: 10px; align-items: flex-start;"}
+![](./figures/PCA_sin_batchelipses.pdf)
+:::
+
 # Discusión de los resultados
 
-Tras el análisis de la expresión de genes y los resultados del paper, se observa cómo el viaje al espacio provoca un gran estrés a los seres vivos, particularmente para el riñón. Como se menciona en el artículo, el riñón es el órgano más afectado y con mayor expresión diferencial de genes al someterse a viajes espaciales.
-Se estudió cómo los cambios de gravedad y condiciones ambientales en el espacio provocan cambios en las rutas metabólicas. Los compuestos de azufre, al intentar eliminar los radicales libres, se consumen masivamente en el organismo, provocando una mayor expresión de genes asociados al estrés oxidativo. También se observa cómo hay una menor capacidad reductora del organismo.
+Tras el análisis de la expresión de genes y los resultados del paper, se observa cómo el viaje al espacio provoca un gran estrés a los seres vivos, particularmente para el riñón. Como se menciona en el artículo, el riñón es el órgano más afectado y con mayor expresión diferencial de genes al someterse a viajes espaciales. Se estudió cómo los cambios de gravedad y condiciones ambientales en el espacio provocan cambios en las rutas metabólicas. Los compuestos de azufre, al intentar eliminar los radicales libres, se consumen masivamente en el organismo, provocando una mayor expresión de genes asociados al estrés oxidativo. También se observa cómo hay una menor capacidad reductora del organismo.
 
-Al comparar dichos resultados con otros artículos e investigaciones, se encontraron conclusiones similares. En el artículo de Vinken, se encontró cómo los viajes espaciales provocan cambios negativos en la función hepática: inflamación y estrés oxidativo. Se confirma una reducción en los niveles de antioxidantes de azufre. 
-Otro estudio, de Blaber et. al (2017) utilizó ratones para demostrar que los viajes espaciales provocan mayor estrés oxidativo en los organismos. Ambos artículos mencionan al gen Gclc, como parte de la respuesta compensatoria a dicho estrés.
-Por último, otro estudio de Mhatre et al. (2022), que utilizó a la especie Drosophila melanogaster, confirma que el cambio al ambiente espacial provocan mayor estrés oxidativo, además de que someter a las especies a gravedad artificial similar a la terrestre, podría ayudar a mitigar dichos efectos. Además, también se encontró enriquecimiento en las rutas de metabolismo del glutatión.
+Al comparar dichos resultados con otros artículos e investigaciones, se encontraron conclusiones similares. En el artículo de Vinken, se encontró cómo los viajes espaciales provocan cambios negativos en la función hepática: inflamación y estrés oxidativo. Se confirma una reducción en los niveles de antioxidantes de azufre. Otro estudio, de Blaber et. al (2017) utilizó ratones para demostrar que los viajes espaciales provocan mayor estrés oxidativo en los organismos. Ambos artículos mencionan al gen Gclc, como parte de la respuesta compensatoria a dicho estrés. Por último, otro estudio de Mhatre et al. (2022), que utilizó a la especie Drosophila melanogaster, confirma que el cambio al ambiente espacial provocan mayor estrés oxidativo, además de que someter a las especies a gravedad artificial similar a la terrestre, podría ayudar a mitigar dichos efectos. Además, también se encontró enriquecimiento en las rutas de metabolismo del glutatión.
 
 Por lo tanto, se puede afirmar que gran parte de los cambios metabólicos en los compuestos de azufre se debe a la baja gravedad. Al intentar compensarlo, se sobreexpresan genes relacionados a la producción de antioxidantes y la síntesis de glutatión. Por otro lado, se demuestra cómo se pueden compensar estos efectos mediante gravedad artificial, lo cual confirma el objetivo de este grupo 1g.
-
 
 ## Referencias
 
 1)  Blaber, E. et al. (2017). Spaceflight Activates Autophagy Programs and the Proteasome in Mouse Liver. International Journal of Molecular Sciences
 
-3)  Kurosawa R, Sugimoto R, Imai H, Atsuji K, Yamada K, Kawano Y, Ohtsu I, Suzuki K. Impact of spaceflight and artificial gravity on sulfur metabolism in mouse liver: sulfur metabolomic and transcriptomic\>
+2)  Kurosawa R, Sugimoto R, Imai H, Atsuji K, Yamada K, Kawano Y, Ohtsu I, Suzuki K. Impact of spaceflight and artificial gravity on sulfur metabolism in mouse liver: sulfur metabolomic and transcriptomic\>
 
-2)  Mhatre, S. et al. (2022). Artificial Gravity Partially Protects Space-induced Neurological Deficits in Drosophila melanogaster. Cell Reports
+3)  Mhatre, S. et al. (2022). Artificial Gravity Partially Protects Space-induced Neurological Deficits in Drosophila melanogaster. Cell Reports
 
 4)  Vinken M. Hepatology in space: Effects of spaceflight and simulated microgravity on the liver. Liver Int. 2022 Dec;42(12):2599-2606. doi: 10.1111/liv.15444. Epub 2022 Oct 12. PMID: 36183343.
 
-5) Zhu, A., Ibrahim, J.G., Love, M.I. (2018) Heavy-tailed prior distributions for sequence count data: removing the noise and preserving large differences. Bioinformatics. https://doi.org/10.1093/bioinformatics/bty895
+5)  Zhu, A., Ibrahim, J.G., Love, M.I. (2018) Heavy-tailed prior distributions for sequence count data: removing the noise and preserving large differences. Bioinformatics. https://doi.org/10.1093/bioinformatics/bty895
