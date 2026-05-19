@@ -75,8 +75,8 @@ Este repositorio contiene una estructura diferente a la de Ken. Para observar la
   - [`rna_nextflow/`](scripts/rna_nextflow/): Dentro de esta carpeta se encuentran los scripts utilizados para correr el trimming y el pseudoalineamiento usando nextflow
   - [`samplesheet.csv`](scripts/samplesheet.csv): El input para nextflow
   - [`normalizacion_salmon/`](scripts/normalizacion_salmon/): Dentro de esta carpeta podremos encontrar dos scripts
-    - [`normalizacion_salmon.R`](scripts/normalizacion_salmon/normalizacion_salmon.R): Este script se enfoca en importar los datos usando tximport
-    - [`deseq2.R`](scripts/normalizacion_salmon/deseq2.R): Este código integra información del script anterior para hacer el PCA, la corrección de batch y el análisis de expresión diferencial
+    - [`normalizacion_salmon.r`](scripts/normalizacion_salmon/normalizacion_salmon.r): Este script se enfoca en importar los datos usando tximport
+    - [`deseq2.r`](scripts/normalizacion_salmon/deseq2.r): Este código integra información del script anterior para hacer el PCA, la corrección de batch y el análisis de expresión diferencial
   - [`gene_ontology/`](scripts/gene_ontology/): Este script contiene el código para hacer el análisis de enriquecimiento
   - [`out_logs/`](scripts/out_logs/): Contiene los archivos de salida estándar `.out` y los archivos de error estándar `.err` que contiene los errores o warnings de cada script corrido.
       - [`DownloadData_1397.err`](scripts/out_logs/DownloadData_1397.err) y [`DownloadData_1397.out`](scripts/out_logs/DownloadData_1397.out) corresponden al script de `download_data.sh` de la carpeta `download_data/`
