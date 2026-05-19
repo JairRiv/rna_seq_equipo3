@@ -76,6 +76,46 @@ tximeta/1.12.0
 
 ### Explicación del pipeline y scripts
 
+## Nexflow
+```{bash}
+#!/bin/bash
+#SBATCH --job-name=rnaseq_equipo3
+#SBATCH --output=/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/out_logs/rnaseq_%j.out
+#SBATCH --error=/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/out_logs/rnaseq_%j.err
+#SBATCH --time=24:00:00
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=8G
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.25.0.9-7.el9.x86_64
+export PATH=$JAVA_HOME/bin:$PATH
+
+module load nextflow/23.04.1
+module load singularity/3.7.0
+
+nextflow run nf-core/rnaseq \
+    -revision 3.14.0 \
+    -profile singularity \
+    --input /mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/samplesheet.csv \
+    --outdir /mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2 \
+    --genome GRCm38 \
+    --pseudo_aligner salmon \
+    --skip_alignment \
+    --trimmer trimgalore \
+    --extra_salmon_quant_args '--gcBias true' \
+    -resume
+```
+Explicación:
+- `export java`: Nextflow usa java y se fijó el directorio pq había incompatibilidad de java
+- `module load`: modulos a cargar nexftlow y singularity
+- `profile singularity`: El comando dice que haga skip en revisar programas del cluster y vaya a singularity y aplique los programas que ya tiene.
+- `input`: ruta absoluta de nuestra sampleesheet(CSV) que contiene metadata y rutas de las lecturas de secuenciación (FastQ).
+- `outdir`: ruta absoluta de donde queremos los resultados.
+- `genome`: a partir del nombre del genoma de referencia jalaŕa paths que ya lo tengan.
+- `pseudo_aligner`: usa el pseudoalineamiento deseado en este caso Salmon pero pudo ser Kallisto por ejemplo.
+- `skip_alignment`: por deafault hace un alineamiento tipo STAR, esta opción sirve para evitar que realice este paso.
+- `trimmer trimgalore`: realiza trimming quita adaptadores, es más lento qeu trimmomatic pero se especializa en adaptadores por ende esta elección.
+- `extra_salmon_quant_args`:
+- `resume`: si se detiene por algún fallo, podemos volver a correr y retomará a partir del donde se quedó sin necesidad de repetir todo desde un inicio.
 
 ### Referencias
 
