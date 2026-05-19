@@ -20,11 +20,11 @@
 • Jair Emiliano Contreras Rivera (jcontreras): [jairivera322\@gmail.com](mailto:jairivera322@gmail.com)
 
 ### Abstract
-Para este análisis de RNA-seq, se compararon transcriptomas hepáticos de ratones bajo tres condiciones: microgravedad real (espacio, 30 días), gravedad artificial en Tierra y un grupo control en Tierra. Se analizaron datos obtenidos del BioProject PRJNA1005192, compuesto por nueve transcriptomas de hígado paired-end de mRNA enriquecida por Poly(A) y secuenciada con Illumina NovaSeq 6000, con tres réplicas biológicas por condición y una profundidad de secuenciación de entre 14.4 y 25.9 millones de lecturas de 300 pb promedio.
+Para este análisis de RNA-seq, se compararon transcriptomas hepáticos de ratones bajo tres condiciones: microgravedad real (espacio, 30 días), gravedad artificial en terrestre (espacio, 30 días) y un grupo control en Tierra. Se analizaron datos obtenidos del BioProject PRJNA1005192, compuesto por nueve transcriptomas de hígado paired-end de mRNA enriquecida por Poly(A) y secuenciada con Illumina NovaSeq 6000, con tres réplicas biológicas por condición y una profundidad de secuenciación de entre 14.4 y 25.9 millones de lecturas de 300 pb promedio.
 
 El procesamiento se realizó mediante TrimGalore para control de calidad y recorte de adaptadores, combinando FastQC y Cutadapt de forma automatizada. La cuantificación se realizó con Salmon mediante pseudoalineamiento basado en índices de k-meros, lo que permite una estimación precisa de la expresión sin alineamiento base a base, reduciendo el tiempo de cómputo significativamente.
 
-Ambas herramientas fueron integradas en un pipeline reproducible con Nextflow. Posteriormente, se aplicó una corrección de batch effect con limma mediante regresión lineal sobre la matriz de expresión normalizada. El análisis de expresión diferencial se realizó con DESeq2, herramienta basada en un modelo binomial negativo diseñada para datos de conteos de RNA-seq con robusto desempeño en experimentos con pocas réplicas. Finalmente, el análisis de enriquecimiento funcional se realizó con g:Profiler consultando Gene Ontology y KEGG para identificar procesos biológicos y vías metabólicas enriquecidas.
+Ambas herramientas fueron integradas en un pipeline reproducible con Nextflow. Posteriormente, se aplicó una corrección de batch effect con Limma mediante regresión lineal sobre la matriz de expresión normalizada. El análisis de expresión diferencial se realizó con DESeq2, herramienta basada en un modelo binomial negativo diseñada para datos de conteos de RNA-seq con robusto desempeño en experimentos con pocas réplicas. Finalmente, el análisis de enriquecimiento funcional se realizó con g:Profiler consultando Gene Ontology y KEGG para identificar procesos biológicos y vías metabólicas enriquecidas.
 
 El análisis identificó cambios en la expresión génica asociados a la adaptación fisiológica hepática frente a condiciones de microgravedad y gravedad artificial, con alteraciones en vías relacionadas a funciones hepáticas centrales. Adicionalmente, se observó una modificación en la expresión de genes vinculados a la producción de antioxidantes, en aparente compensación al agotamiento de compuestos de azufre, evidenciando el impacto de los cambios gravitacionales sobre la función hepática.
 
@@ -149,7 +149,7 @@ Explicación:
 
 Inputs de nextflow:
 
-S tiene que crear un documento csv que contenga la información de la ruta de las secuencias para cada muestra. Así como especificar la orientación de la transcirpción, en nuestro caso lo fijamos a automático. En nuestro caso fue la siguiente tabla
+Se tiene que crear un documento csv que contenga la información de la ruta de las secuencias para cada muestra. Así como especificar la orientación de la transcripción, en nuestro caso lo fijamos a automático. En nuestro caso fue la siguiente tabla
 
 ```
 sample,fastq_1,fastq_2,strandedness
@@ -168,13 +168,13 @@ SAMN36978213_MG,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data
 
 Outputs de nextflow:
 
-Todos los resultados se van a guardar en quality2/ (/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2) la estrucutra de las carpetas junto con cada salida fue previamente explicada. A contunuacion se menciona de forma breve los outputs:
+Todos los resultados se van a guardar en quality2/ (/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2) la estructura de las carpetas junto con cada salida fue previamente explicada. A continuación se menciona de forma breve los outputs:
 
-Del control de calidad antes del trimming se obtienen reportes individuales por muestra en formato html ademas de un reporte global de MultiQC.
+Del control de calidad antes del trimming se obtienen reportes individuales por muestra en formato HTML además de un reporte global de MultiQC.
 
 Del trimming con TrimGalore se obtiene por muestra un reporte de texto con el total de reads originales, el porcentaje de reads con adaptadores detectados, las bases removidas por baja calidad, las reads conservadas y el total de bases restantes. Además, se generan los FastQC resumidos un segundo reporte de MultiQC.
 
-Del pseudoalineamiento con Salmon se obtiene por muestra un archivo quant.sf con la abundancia y conteo a nivel de transcrito y un quant.genes.sf a nivel de gen ademas de matrices como TPM, longitudes de genes y transcritos para todas las muestras, además del archivo tx2gene.tsv con la relación transcrito-gen. Finalmente se incluye informacion sobre la trazabilidad del pipeline, como versiones, opciones o errores
+Del pseudoalineamiento con Salmon se obtiene por muestra un archivo quant.sf con la abundancia y conteo a nivel de transcrito y un quant.genes.sf a nivel de gen ademas de matrices como TPM, longitudes de genes y transcritos para todas las muestras, además del archivo tx2gene.tsv con la relación transcrito-gen. Finalmente se incluye información sobre la trazabilidad del pipeline, como versiones, opciones o errores
 
 ### Explicacion del pipeline general: 
 
@@ -197,7 +197,7 @@ Del pseudoalineamiento con Salmon se obtiene por muestra un archivo quant.sf con
    - Script: [`scripts/normalizacion_salmon/normalizacion_salmon.r`](scripts/normalizacion_salmon/normalizacion_salmon.r)
    - Logs: [`scripts/out_logs/normalizacion_1792.err`](scripts/out_logs/normalizacion_1792.err) y [`scripts/out_logs/normalizacion_1792.out`](scripts/out_logs/normalizacion_1792.out)
 
- 5. PCA y corrección de batch effect: Se realiza Análisis de Componentes Principales (PCA) para visualizar la varianza y se corrige el batch effect usando limma
+ 5. PCA y corrección de batch effect: Se realiza Análisis de Componentes Principales (PCA) para visualizar la varianza y se corrige el batch effect usando Limma
    - Script: [`scripts/normalizacion_salmon/deseq2.r`](scripts/normalizacion_salmon/deseq2.r)
    - Logs: [`scripts/out_logs/deseq2_1818.err`](scripts/out_logs/deseq2_1818.err) y [`scripts/out_logs/deseq2_1818.out`](scripts/out_logs/deseq2_1818.out)
 
