@@ -34,7 +34,7 @@ Este repositorio contiene una estructura diferente a la de de Ken, para observar
 
 ### Estructura del repositorio
 
-Este repositorio contiene una estructura diferente a la de Ken. Para observar la documentación de la estructura completa, diríjase a [`Reporte_Equipo3_Rna_seq.qmd`](#reporte_equipo3_rna_seqqmd). Las carpetas con su descripción se detallan a continuación:
+Este repositorio contiene una estructura diferente a la de Ken. Para observar la documentación de la estructura completa, diríjase a [`Reporte_Equipo3_Rna_seq.qmd`](#reporte_equipo3_rna_seqqmd) o a [`Reporte final`](https://jairriv.github.io/rna_seq_equipo3/). Las carpetas con su descripción se detallan a continuación:
 
 - [`figures/`](figures/): Este directorio contiene todas las imágenes generadas durante el análisis y la documentación
   - [`antes_trimming_multqic_mean_quality.png`](figures/antes_trimming_multqic_mean_quality.png): Esta imagen es el resultado del multiqc en la sección mean quality antes de hacer el trimming
