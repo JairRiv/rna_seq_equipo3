@@ -66,7 +66,21 @@ Este repositorio contiene una estructura diferente a la de de Ken, para observar
   - `barplotUP_GO_MG_vs_GC`: gráfica de las funciones biológicas sobreexpresadas en microgravedad respecto al control, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome` y `WP = WikiPathways`
 - `Reporte_Equipo3_Rna_seq.qmd`: Es un archivo .qmd con toda la documentación del análisis, discusión, etc.
 - `metadatas.csv`: Este archivo contiene los metadatos del análisis
-
+- `scripts/`: Este directorio contiene todos los scripts para realizar el analisis.
+  - `download_data/`: Contiene el script utilizado para descargar los transcritos crudos mandado como job
+  - `rna_nextflow/`: Dentro de esta carpeta se encuentran los scripts utilizados para correr el trimming y el pseudoalinemiento usando nextflow
+  - `samplesheet.csv`: el input para nextflow
+  - `normalizacion_salmon/`: Dendro de esta carpeta podremos encontrar dos scripts
+    - `normalizacion_salmon`: Este script sirve se enfoca en importar los datos usando tximport
+    - `deseq2`: Este codigo integra informacion de el script anterior para hacer el PCA, la corraccion de batch y el analisis de expresion diferencial
+  - `gene_ontology/`: Este script contiene el codigo para hacer el analisis de enriquecimiento
+  - `outlogs/`: Contiene los archivos de salida estándar `.out` y los archivos de error estándar `.err` que contiene los errores o warnings de cada script corrido.
+      - `DownloadData_1397.err` y `DownloadData_1397.out` corresponden al script de `download_Data.sh` de la carpeta `download_data/`
+      - `deseq2_1818.err` y `deseq2_1818.out` corresponden al script de `deseq2.r` de la carpeta `normalizacion_salmon/`
+      - `normalizacion_1792.err` y `normalizacion_1792.out` corresponden al script de `deseq2.r` de la carpeta `normalizacion_salmon/`
+      - `rnaseq_1478.err` y `rnaseq_1478.out` corresponden al script de `rna_nextflow.sh` de la carpeta `rna_nextflow/`
+      - `gene_ontology_1817.err` y `gene_ontology_1817.out` corresponden al script de `gene_ontology.sh` de la carpeta `gene_ontology/`
+    
 
 | biosample | grupo     | condicion                          | sample_ID           | srr_ID      |
 |----------:|-----------|------------------------------------|---------------------|-------------|
