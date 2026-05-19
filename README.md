@@ -45,6 +45,7 @@ Este repositorio contiene una estructura diferente a la de de Ken, para observar
   - `PCA_screeplot_sin_batch.pdf`: La imagen muestra el scree plot del PCA con la correción de batch
   - `PCA_sin_batch.pdf`: La imagen muestra el PCA sin los efectos del batch
   - `PCA_sin_batch_elipses.pdf`: La imagen muestra el PCA sin los efectos del batch y con los clusters identificados
+  - `Nf_workflow.jpg`: diagrama de flujo de nuestro trabajo
 - `Reporte_Equipo3_Rna_seq.qmd`: Es un archivo .qmd con toda la documentación del análisis, discusión, etc.
 - `metadatas.csv`: Este archivo contiene los metadatos del análisis
 
