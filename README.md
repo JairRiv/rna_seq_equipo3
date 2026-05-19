@@ -121,6 +121,36 @@ Explicación:
 - `extra_salmon_quant_args`:
 - `resume`: si se detiene por algún fallo, podemos volver a correr y retomará a partir del donde se quedó sin necesidad de repetir todo desde un inicio.
 
+Inputs de nextflow:
+
+S tiene que crear un documento csv que contenga la información de la ruta de las secuencias para cada muestra. Así como especificar la orientación de la transcirpción, en nuestro caso lo fijamos a automático. En nuestro caso fue la siguiente tabla
+
+```
+sample,fastq_1,fastq_2,strandedness
+SAMN36978221_GC,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629473_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629473_2.fastq.gz,auto
+SAMN36978220_GC,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629472_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629472_2.fastq.gz,auto
+SAMN36978219_GC,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629471_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629471_2.fastq.gz,auto
+SAMN36978218_A1G,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629470_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629470_2.fastq.gz,auto
+SAMN36978217_A1G,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629469_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629469_2.fastq.gz,auto
+SAMN36978216_A1G,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629468_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629468_2.fastq.gz,auto
+SAMN36978215_MG,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629467_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629467_2.fastq.gz,auto
+SAMN36978214_MG,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629466_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629466_2.fastq.gz,auto
+SAMN36978213_MG,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629465_1.fastq.gz,/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/data/raw/SRR25629465_2.fastq.gz,auto
+
+```
+
+
+Outputs de nextflow:
+
+Todos los resultados se van a guardar en quality2/ (/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2) la estrucutra de las carpetas junto con cada salida fue previamente explicada. A contunuacion se menciona de forma breve los outputs:
+
+Del control de calidad antes del trimming se obtienen reportes individuales por muestra en formato html ademas de un reporte global de MultiQC.
+
+Del trimming con TrimGalore se obtiene por muestra un reporte de texto con el total de reads originales, el porcentaje de reads con adaptadores detectados, las bases removidas por baja calidad, las reads conservadas y el total de bases restantes. Además, se generan los FastQC resumidos un segundo reporte de MultiQC.
+
+Del pseudoalineamiento con Salmon se obtiene por muestra un archivo quant.sf con la abundancia y conteo a nivel de transcrito y un quant.genes.sf a nivel de gen ademas de matrices como TPM, longitudes de genes y transcritos para todas las muestras, además del archivo tx2gene.tsv con la relación transcrito-gen. Finalmente se incluye informacion sobre la trazabilidad del pipeline, como versiones, opciones o errores
+
+
 ### Referencias
 
 1)  Blaber, E. et al. (2017). Spaceflight Activates Autophagy Programs and the Proteasome in Mouse Liver. International Journal of Molecular Sciences
