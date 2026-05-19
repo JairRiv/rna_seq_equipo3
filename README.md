@@ -44,7 +44,7 @@ Este repositorio contiene una estructura diferente a la de Ken. Para observar la
   - [`antes_trimming_per_base_n_content.png`](figures/antes_trimming_per_base_n_content.png): Contiene la distribución de bases desconocidas en el multiqc antes de hacer el trimming
   - [`antes_trim_sequence_dup_lev.png`](figures/antes_trim_sequence_dup_lev.png): La imagen muestra la distribución de las secuencias duplicadas en el multiqc antes de hacer el trimming
   - [`antes_triming_adapters.png`](figures/antes_triming_adapters.png): La imagen muestra la distribución de los adaptadores en el multiqc antes de hacer el trimming
-  - [`PCA_con_batch_effect.png`](figures/PCA_con_batch_effect.png): Esta imagen es el resultado del PCA con batch effect
+  - [`PCA_con_batch.png`](figures/PCA_con_batch.png): Esta imagen es el resultado del PCA con batch effect
   - [`scree_con_batch.png`](figures/scree_con_batch.png): La imagen muestra el scree plot (varianza) del PCA antes de la corrección de batch
   - [`scree_sin_batch.png`](figures/scree_sin_batch.png): La imagen muestra el scree plot del PCA con la corrección de batch
   - [`PCA_sin_batch.png`](figures/PCA_sin_batch.png): La imagen muestra el PCA sin los efectos del batch
