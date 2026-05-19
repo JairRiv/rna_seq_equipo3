@@ -78,16 +78,17 @@ Este repositorio contiene una estructura diferente a la de Ken. Para observar la
     - [`normalizacion_salmon.R`](scripts/normalizacion_salmon/normalizacion_salmon.R): Este script se enfoca en importar los datos usando tximport
     - [`deseq2.R`](scripts/normalizacion_salmon/deseq2.R): Este código integra información del script anterior para hacer el PCA, la corrección de batch y el análisis de expresión diferencial
   - [`gene_ontology/`](scripts/gene_ontology/): Este script contiene el código para hacer el análisis de enriquecimiento
-  - [`outlogs/`](scripts/outlogs/): Contiene los archivos de salida estándar `.out` y los archivos de error estándar `.err` que contiene los errores o warnings de cada script corrido.
-      - [`DownloadData_1397.err`](scripts/outlogs/DownloadData_1397.err) y [`DownloadData_1397.out`](scripts/outlogs/DownloadData_1397.out) corresponden al script de `download_Data.sh` de la carpeta `download_data/`
-      - [`deseq2_1818.err`](scripts/outlogs/deseq2_1818.err) y [`deseq2_1818.out`](scripts/outlogs/deseq2_1818.out) corresponden al script de `deseq2.R` de la carpeta `normalizacion_salmon/`
-      - [`normalizacion_1792.err`](scripts/outlogs/normalizacion_1792.err) y [`normalizacion_1792.out`](scripts/outlogs/normalizacion_1792.out) corresponden al script de `normalizacion_salmon.R` de la carpeta `normalizacion_salmon/`
-      - [`rnaseq_1478.err`](scripts/outlogs/rnaseq_1478.err) y [`rnaseq_1478.out`](scripts/outlogs/rnaseq_1478.out) corresponden al script de `rna_nextflow.sh` de la carpeta `rna_nextflow/`
-      - [`gene_ontology_1817.err`](scripts/outlogs/gene_ontology_1817.err) y [`gene_ontology_1817.out`](scripts/outlogs/gene_ontology_1817.out) corresponden al script de `gene_ontology.sh` de la carpeta `gene_ontology/`
+  - [`out_logs/`](scripts/out_logs/): Contiene los archivos de salida estándar `.out` y los archivos de error estándar `.err` que contiene los errores o warnings de cada script corrido.
+      - [`DownloadData_1397.err`](scripts/out_logs/DownloadData_1397.err) y [`DownloadData_1397.out`](scripts/out_logs/DownloadData_1397.out) corresponden al script de `download_data.sh` de la carpeta `download_data/`
+      - [`deseq2_1818.err`](scripts/out_logs/deseq2_1818.err) y [`deseq2_1818.out`](scripts/out_logs/deseq2_1818.out) corresponden al script de `deseq2.R` de la carpeta `normalizacion_salmon/`
+      - [`normalizacion_1792.err`](scripts/out_logs/normalizacion_1792.err) y [`normalizacion_1792.out`](scripts/out_logs/normalizacion_1792.out) corresponden al script de `normalizacion_salmon.R` de la carpeta `normalizacion_salmon/`
+      - [`rnaseq_1478.err`](scripts/out_logs/rnaseq_1478.err) y [`rnaseq_1478.out`](scripts/out_logs/rnaseq_1478.out) corresponden al script de `rna_nextflow.sh` de la carpeta `rna_nextflow/`
+      - [`gene_ontology_1817.err`](scripts/out_logs/gene_ontology_1817.err) y [`gene_ontology_1817.out`](scripts/out_logs/gene_ontology_1817.out) corresponden al script de `gene_ontology.sh` de la carpeta `gene_ontology/`
 - [`DEG/`](DEG/): Directorio que contiene los resultados del análisis de expresión diferencial
     - `DEG_*.csv` : Resultados completos de DESeq2, todos los genes con sus estadísticas (log2FoldChange, pvalue, padj, etc.), sin ningún filtro
     - `SIG_*.csv` : Subconjunto de genes ya filtrado con padj < 0.05 y |LFC| ≥ 2 (todos los genes son significativos).
     - `res_*.RData`: Son los resultados de DESeq2 guardados en formato de R, para recargar los datos en R sin tener que correr DESeq2 de nuevo.
+
 
 | biosample | grupo     | condicion                          | sample_ID           | srr_ID      |
 |----------:|-----------|------------------------------------|---------------------|-------------|
