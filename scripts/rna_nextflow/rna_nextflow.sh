@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH --job-name=rnaseq_equipo3
+#SBATCH --output=/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/out_logs/rnaseq_%j.out
+#SBATCH --error=/mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/out_logs/rnaseq_%j.err
+#SBATCH --time=24:00:00
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=8G
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.25.0.9-7.el9.x86_64
+export PATH=$JAVA_HOME/bin:$PATH
+
+module load nextflow/23.04.1
+module load singularity/3.7.0
+
+nextflow run nf-core/rnaseq \
+    -revision 3.14.0 \
+    -profile singularity \
+    --input /mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/scripts/samplesheet.csv \
+    --outdir /mnt/data/bioinfo-estadistica-2/RNAseq_2026/equipos/Equipo3/quality2 \
+    --genome GRCm38 \
+    --pseudo_aligner salmon \
+    --skip_alignment \
+    --trimmer trimgalore \
+    --extra_salmon_quant_args '--gcBias true' \
+    -resume

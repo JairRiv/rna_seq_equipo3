@@ -1,0 +1,180 @@
+--2026-04-21 11:33:29--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/068/SRR25629468/SRR25629468_1.fastq.gz
+           => ‘SRR25629468_1.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/068/SRR25629468 ... done.
+==> SIZE SRR25629468_1.fastq.gz ... 1440655919
+==> PASV ... done.    ==> RETR SRR25629468_1.fastq.gz ... done.
+SRR25629468_1.fastq.gz: Permission denied
+--2026-04-21 11:33:31--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/068/SRR25629468/SRR25629468_2.fastq.gz
+           => ‘SRR25629468_2.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/068/SRR25629468 ... done.
+==> SIZE SRR25629468_2.fastq.gz ... 1439620467
+==> PASV ... done.    ==> RETR SRR25629468_2.fastq.gz ... done.
+SRR25629468_2.fastq.gz: Permission denied
+--2026-04-21 11:33:33--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/073/SRR25629473/SRR25629473_1.fastq.gz
+           => ‘SRR25629473_1.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/073/SRR25629473 ... done.
+==> SIZE SRR25629473_1.fastq.gz ... 1380411057
+==> PASV ... done.    ==> RETR SRR25629473_1.fastq.gz ... done.
+SRR25629473_1.fastq.gz: Permission denied
+--2026-04-21 11:33:35--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/073/SRR25629473/SRR25629473_2.fastq.gz
+           => ‘SRR25629473_2.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/073/SRR25629473 ... done.
+==> SIZE SRR25629473_2.fastq.gz ... 1378841199
+==> PASV ... done.    ==> RETR SRR25629473_2.fastq.gz ... done.
+SRR25629473_2.fastq.gz: Permission denied
+--2026-04-21 11:33:36--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/067/SRR25629467/SRR25629467_1.fastq.gz
+           => ‘SRR25629467_1.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/067/SRR25629467 ... done.
+==> SIZE SRR25629467_1.fastq.gz ... 1035687516
+==> PASV ... done.    ==> RETR SRR25629467_1.fastq.gz ... done.
+SRR25629467_1.fastq.gz: Permission denied
+--2026-04-21 11:33:38--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/067/SRR25629467/SRR25629467_2.fastq.gz
+           => ‘SRR25629467_2.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/067/SRR25629467 ... done.
+==> SIZE SRR25629467_2.fastq.gz ... 1035198774
+==> PASV ... done.    ==> RETR SRR25629467_2.fastq.gz ... done.
+SRR25629467_2.fastq.gz: Permission denied
+--2026-04-21 11:33:39--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/070/SRR25629470/SRR25629470_1.fastq.gz
+           => ‘SRR25629470_1.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/070/SRR25629470 ... done.
+==> SIZE SRR25629470_1.fastq.gz ... 1251325664
+==> PASV ... done.    ==> RETR SRR25629470_1.fastq.gz ... done.
+SRR25629470_1.fastq.gz: Permission denied
+--2026-04-21 11:33:41--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/070/SRR25629470/SRR25629470_2.fastq.gz
+           => ‘SRR25629470_2.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/070/SRR25629470 ... done.
+==> SIZE SRR25629470_2.fastq.gz ... 1250788249
+==> PASV ... done.    ==> RETR SRR25629470_2.fastq.gz ... done.
+SRR25629470_2.fastq.gz: Permission denied
+--2026-04-21 11:33:44--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/071/SRR25629471/SRR25629471_1.fastq.gz
+           => ‘SRR25629471_1.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/071/SRR25629471 ... done.
+==> SIZE SRR25629471_1.fastq.gz ... 1042145469
+==> PASV ... done.    ==> RETR SRR25629471_1.fastq.gz ... done.
+SRR25629471_1.fastq.gz: Permission denied
+--2026-04-21 11:33:46--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/071/SRR25629471/SRR25629471_2.fastq.gz
+           => ‘SRR25629471_2.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/071/SRR25629471 ... done.
+==> SIZE SRR25629471_2.fastq.gz ... 1041356804
+==> PASV ... done.    ==> RETR SRR25629471_2.fastq.gz ... done.
+SRR25629471_2.fastq.gz: Permission denied
+--2026-04-21 11:33:47--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/065/SRR25629465/SRR25629465_1.fastq.gz
+           => ‘SRR25629465_1.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/065/SRR25629465 ... done.
+==> SIZE SRR25629465_1.fastq.gz ... 805307096
+==> PASV ... done.    ==> RETR SRR25629465_1.fastq.gz ... done.
+SRR25629465_1.fastq.gz: Permission denied
+--2026-04-21 11:33:49--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/065/SRR25629465/SRR25629465_2.fastq.gz
+           => ‘SRR25629465_2.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/065/SRR25629465 ... done.
+==> SIZE SRR25629465_2.fastq.gz ... 805099237
+==> PASV ... done.    ==> RETR SRR25629465_2.fastq.gz ... done.
+SRR25629465_2.fastq.gz: Permission denied
+--2026-04-21 11:33:51--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/066/SRR25629466/SRR25629466_1.fastq.gz
+           => ‘SRR25629466_1.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/066/SRR25629466 ... done.
+==> SIZE SRR25629466_1.fastq.gz ... 1228178838
+==> PASV ... done.    ==> RETR SRR25629466_1.fastq.gz ... done.
+SRR25629466_1.fastq.gz: Permission denied
+--2026-04-21 11:33:52--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/066/SRR25629466/SRR25629466_2.fastq.gz
+           => ‘SRR25629466_2.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/066/SRR25629466 ... done.
+==> SIZE SRR25629466_2.fastq.gz ... 1227944244
+==> PASV ... done.    ==> RETR SRR25629466_2.fastq.gz ... done.
+SRR25629466_2.fastq.gz: Permission denied
+--2026-04-21 11:33:54--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/069/SRR25629469/SRR25629469_1.fastq.gz
+           => ‘SRR25629469_1.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/069/SRR25629469 ... done.
+==> SIZE SRR25629469_1.fastq.gz ... 1191157936
+==> PASV ... done.    ==> RETR SRR25629469_1.fastq.gz ... done.
+SRR25629469_1.fastq.gz: Permission denied
+--2026-04-21 11:33:56--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/069/SRR25629469/SRR25629469_2.fastq.gz
+           => ‘SRR25629469_2.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/069/SRR25629469 ... done.
+==> SIZE SRR25629469_2.fastq.gz ... 1190516440
+==> PASV ... done.    ==> RETR SRR25629469_2.fastq.gz ... done.
+SRR25629469_2.fastq.gz: Permission denied
+--2026-04-21 11:33:57--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/072/SRR25629472/SRR25629472_1.fastq.gz
+           => ‘SRR25629472_1.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/072/SRR25629472 ... done.
+==> SIZE SRR25629472_1.fastq.gz ... 1366752034
+==> PASV ... done.    ==> RETR SRR25629472_1.fastq.gz ... done.
+SRR25629472_1.fastq.gz: Permission denied
+--2026-04-21 11:33:59--  ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR256/072/SRR25629472/SRR25629472_2.fastq.gz
+           => ‘SRR25629472_2.fastq.gz’
+Resolving ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)... 193.62.193.165
+Connecting to ftp.sra.ebi.ac.uk (ftp.sra.ebi.ac.uk)|193.62.193.165|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /vol1/fastq/SRR256/072/SRR25629472 ... done.
+==> SIZE SRR25629472_2.fastq.gz ... 1365501038
+==> PASV ... done.    ==> RETR SRR25629472_2.fastq.gz ... done.
+SRR25629472_2.fastq.gz: Permission denied
