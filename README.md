@@ -101,22 +101,7 @@ Este repositorio contiene una estructura diferente a la de Ken. Para observar la
 | 36978214  | MG mice   | Microgravedad en el espacio       | SAMN36978214_MG     | SRR25629466 |
 | 36978213  | MG mice   | Microgravedad en el espacio       | SAMN36978213_MG     | SRR25629465 |
 
-### Módulos
 
-```
-anaconda3/2025.06
-fastqc/0.11.3
-R/4.4.1
-nextflow/23.04.1
-java11
-nf-core/rnaseq 3.14.0
-singularity/3.7.0
-deseq2/1.28.0
-salmon/1.10.1
-trimgalore/0.6.7
-python/3.9.5
-tximeta/1.12.0
-```
 
 ### Explicación del pipeline y scripts
 
@@ -189,6 +174,38 @@ Del control de calidad antes del trimming se obtienen reportes individuales por 
 Del trimming con TrimGalore se obtiene por muestra un reporte de texto con el total de reads originales, el porcentaje de reads con adaptadores detectados, las bases removidas por baja calidad, las reads conservadas y el total de bases restantes. Además, se generan los FastQC resumidos un segundo reporte de MultiQC.
 
 Del pseudoalineamiento con Salmon se obtiene por muestra un archivo quant.sf con la abundancia y conteo a nivel de transcrito y un quant.genes.sf a nivel de gen ademas de matrices como TPM, longitudes de genes y transcritos para todas las muestras, además del archivo tx2gene.tsv con la relación transcrito-gen. Finalmente se incluye informacion sobre la trazabilidad del pipeline, como versiones, opciones o errores
+
+## Explicación:
+- `export java`: Nextflow usa java y se fijó el directorio pq había incompatibilidad de java
+- `module load`: modulos a cargar nexftlow y singularity
+- `profile singularity`: El comando dice que haga skip en revisar programas del cluster y vaya a singularity y aplique los programas que ya tiene.
+- `input`: ruta absoluta de nuestra sampleesheet(CSV) que contiene metadata y rutas de las lecturas de secuenciación (FastQ).
+- `outdir`: ruta absoluta de donde queremos los resultados.
+- `genome`: a partir del nombre del genoma de referencia jalaŕa paths que ya lo tengan.
+- `pseudo_aligner`: usa el pseudoalineamiento deseado en este caso Salmon pero pudo ser Kallisto por ejemplo.
+- `skip_alignment`: por deafault hace un alineamiento tipo STAR, esta opción sirve para evitar que realice este paso.
+- `trimmer trimgalore`: realiza trimming quita adaptadores, es más lento qeu trimmomatic pero se especializa en adaptadores por ende esta elección.
+- `extra_salmon_quant_args`: evita el sesgo de GC provocados por la amplificación por PCR
+- `resume`: si se detiene por algún fallo, podemos volver a correr y retomará a partir del donde se quedó sin necesidad de repetir todo desde un inicio.
+
+
+### Versiones
+
+```
+anaconda3/2025.06
+fastqc/0.11.3
+R/4.4.1
+nextflow/23.04.1
+java11
+nf-core/rnaseq 3.14.0
+singularity/3.7.0
+deseq2/1.28.0
+salmon/1.10.1
+trimgalore/0.6.7
+python/3.9.5
+tximeta/1.12.0
+```
+
 
 
 ### Referencias
