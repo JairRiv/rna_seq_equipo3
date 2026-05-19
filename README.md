@@ -32,59 +32,62 @@ El análisis identificó cambios en la expresión génica asociados a la adaptac
 
 Este repositorio contiene una estructura diferente a la de de Ken, para observar la documentación de la estrutura de Ken, dirgirse a `Reporte_Equipo3_Rna_seq.qmd`. Las carpetas con su descripción se muestran a continuación así como el pie de imagen de cada una de ellas
 
-- `figures/`: Este directorio contiene todas las imágenes generadas durante el análisis y la documentación
-  - (figures/antes_trimming_multqic_mean_quality.png) `antes_trimming_multqic_mean_quality.png`: Esta imagen es el resultado del multiqc en la sección mean quality antes de hacer el trimming
-  - `antes_trimming_gc_percent.png`: La imagen se refiere al porcentaje de GC en el multiqc antes de hacer el trimming
-  - `antes_trimming_q_scores.png`: La imagen representa la distribución de calidades de las secuencias antes de hacer el trimming
-  - `antes_trimming_per_base_seq_content.png`: Contiene un gráfico que muestra la proporción de bases A, T, G, C en el multiqc antes de hacer el trimming
-  - `antes_trimming_per_base_n_content.png`: Contiene la distribución de bases desconocidas en el multiqc antes de hacer el trimming
-  - `antes_trim_sequence_dup_lev.png`: La imagen muestra la distribución de las secuencias duplicadas en el multiqc antes de hacer el trimming
-  - `antes_triming_adapters.png`: La imagen muestra la distribución de los adaptadores en el multiqc antes de hacer el trimming
-  - `PCA_con_batch_effect.pdf`: Esta imagen es el resultado del PCA con batch effect
-  - `PCA_screeplot_con_batch_effect.pdf`: La imagen muestra el scree plot (varianza) del PCA antes de la correción de batch
-  - `PCA_screeplot_sin_batch.pdf`: La imagen muestra el scree plot del PCA con la correción de batch
-  - `PCA_sin_batch.pdf`: La imagen muestra el PCA sin los efectos del batch
-  - `PCA_sin_batch_elipses.pdf`: La imagen muestra el PCA sin los efectos del batch y con los clusters identificados
-  - `Nf_workflow.jpg`: diagrama de flujo de nuestro trabajo
-  - `post_trimming_adapter_content.png`: Diostribución del contenido de adaptadores post trimming 
-  - `post_trimming_gc_content.png`: Contenido de GC en el multiqc después quitar sesgo de gc por PCR
-  - `post_trimming_general_statistics.png`: Estadísticas generales del multiqc post trimming
-  - `post_trimming_overrepresented_Seq.png`: Si es que hay secuencias sobrerrepresentadas después del trimming
-  - `post_trimming_per_base_N_content.png`:Indica si hay alguna base no identificada
-  - `post_trimming_per_base_seq_content.png`: Muestra el contenido por base en el multiqc
-  - `post_trimming_per_seq_quality.png`: Indica la calidad por secuencias post trimming
-  - `post_trimming_seq_duplication.png`: Si hay secuencias duplicadas post trimming, aquí se muestran
-  - `post_trimming_seq_length_distribution.png`: Muestra la distribución en el tamaño de las secuencias post trimming
-  - `post_trimming_sequence_quality.png`: La imagen contiene la claidad de las secuencias post trimming
-  - `SeqLenOverAll.png`: Es la distribución del tamaño de las secuencias de los datos procesados, que varían entre 40-300 bp
-  - `ManhattanGO_A1G_vs_GC.pdf`, `ManhattanGO_MG_vs_A1G.pdf` y `ManhattanGO_MG_vs_GC.pdf`: plots de enriquecimiento funcional que compara los genes diferencialmente expresados que comparten los pares de gruppos, y categoriza en upregulated y downregulated, mientras más arriba se encuentren en el eje y más significativos son y los categoriza según las bases de datos `GO:BP = Gene Ontology Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome` y `WP = WikiPathways`
-  - `barplotDOWN_GO_A1G_vs_GC`: gráfica de las funciones biológicas subexpresadas en gravedad artificial respecto al control, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización` y `WP = WikiPathways`
-  - `barplotDOWN_GO_MG_vs_A1G`: gráfica de las funciones biológicas subexpresadas en microgravedad respecto a gravedad artificial, clasifica según `Biological Process` y `WP = WikiPathways`
-  - `barplotDOWN_GO_MG_vs_GC`: gráfica de las funciones biológicas subexpresadas en microgravedad respecto al control, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome` y `WP = WikiPathways`
-  - `barplotUP_GO_A1G_vs_GC`: gráfica de las funciones biológicas sobreexpresadas en gravedad artificial respecto al control, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización` y `REAC = Reactome`
-  - `barplotUP_GO_MG_vs_A1G`: gráfica de las funciones biológicas sobreexpresadas en microgravedad respecto a gravedad artificial, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización` y `REAC = Reactome`
-  - `barplotUP_GO_MG_vs_GC`: gráfica de las funciones biológicas sobreexpresadas en microgravedad respecto al control, clasifica según `Biological Process`, `KEGG = pathways metabólicos/señalización`, `REAC = Reactome` y `WP = WikiPathways`
-- `Reporte_Equipo3_Rna_seq.qmd`: Es un archivo .qmd con toda la documentación del análisis, discusión, etc.
-- `metadatas.csv`: Este archivo contiene los metadatos del análisis
-- `scripts/`: Este directorio contiene todos los scripts para realizar el analisis.
-  - `download_data/`: Contiene el script utilizado para descargar los transcritos crudos mandado como job
-  - `rna_nextflow/`: Dentro de esta carpeta se encuentran los scripts utilizados para correr el trimming y el pseudoalinemiento usando nextflow
-  - `samplesheet.csv`: el input para nextflow
-  - `normalizacion_salmon/`: Dendro de esta carpeta podremos encontrar dos scripts
-    - `normalizacion_salmon`: Este script sirve se enfoca en importar los datos usando tximport
-    - `deseq2`: Este codigo integra informacion de el script anterior para hacer el PCA, la corraccion de batch y el analisis de expresion diferencial
-  - `gene_ontology/`: Este script contiene el codigo para hacer el analisis de enriquecimiento
-  - `outlogs/`: Contiene los archivos de salida estándar `.out` y los archivos de error estándar `.err` que contiene los errores o warnings de cada script corrido.
-      - `DownloadData_1397.err` y `DownloadData_1397.out` corresponden al script de `download_Data.sh` de la carpeta `download_data/`
-      - `deseq2_1818.err` y `deseq2_1818.out` corresponden al script de `deseq2.r` de la carpeta `normalizacion_salmon/`
-      - `normalizacion_1792.err` y `normalizacion_1792.out` corresponden al script de `deseq2.r` de la carpeta `normalizacion_salmon/`
-      - `rnaseq_1478.err` y `rnaseq_1478.out` corresponden al script de `rna_nextflow.sh` de la carpeta `rna_nextflow/`
-      - `gene_ontology_1817.err` y `gene_ontology_1817.out` corresponden al script de `gene_ontology.sh` de la carpeta `gene_ontology/`
-- `DEG/`: Directorio que contiene los reusltados del análisis de expresión diferencial
-    - `DEG_*.csv` : resultados completos de DESeq2, todos los genes con sus estadísticas (log2FoldChange, pvalue, padj, etc.), sin ningún filtro
-    - `SIG_*.csv` : subconjunto de genes ya filtrado con padj < 0.05 y |LFC| => 2 (todos los genes son significativos).
+### Estructura del repositorio
+
+Este repositorio contiene una estructura diferente a la de Ken. Para observar la documentación de la estructura completa, diríjase a [`Reporte_Equipo3_Rna_seq.qmd`](#reporte_equipo3_rna_seqqmd). Las carpetas con su descripción se detallan a continuación:
+
+- [`figures/`](figures/): Este directorio contiene todas las imágenes generadas durante el análisis y la documentación
+  - [`antes_trimming_multqic_mean_quality.png`](figures/antes_trimming_multqic_mean_quality.png): Esta imagen es el resultado del multiqc en la sección mean quality antes de hacer el trimming
+  - [`antes_trimming_gc_percent.png`](figures/antes_trimming_gc_percent.png): La imagen se refiere al porcentaje de GC en el multiqc antes de hacer el trimming
+  - [`antes_trimming_q_scores.png`](figures/antes_trimming_q_scores.png): La imagen representa la distribución de calidades de las secuencias antes de hacer el trimming
+  - [`antes_trimming_per_base_seq_content.png`](figures/antes_trimming_per_base_seq_content.png): Contiene un gráfico que muestra la proporción de bases A, T, G, C en el multiqc antes de hacer el trimming
+  - [`antes_trimming_per_base_n_content.png`](figures/antes_trimming_per_base_n_content.png): Contiene la distribución de bases desconocidas en el multiqc antes de hacer el trimming
+  - [`antes_trim_sequence_dup_lev.png`](figures/antes_trim_sequence_dup_lev.png): La imagen muestra la distribución de las secuencias duplicadas en el multiqc antes de hacer el trimming
+  - [`antes_triming_adapters.png`](figures/antes_triming_adapters.png): La imagen muestra la distribución de los adaptadores en el multiqc antes de hacer el trimming
+  - [`PCA_con_batch_effect.pdf`](figures/PCA_con_batch_effect.pdf): Esta imagen es el resultado del PCA con batch effect
+  - [`PCA_screeplot_con_batch_effect.pdf`](figures/PCA_screeplot_con_batch_effect.pdf): La imagen muestra el scree plot (varianza) del PCA antes de la corrección de batch
+  - [`PCA_screeplot_sin_batch.pdf`](figures/PCA_screeplot_sin_batch.pdf): La imagen muestra el scree plot del PCA con la corrección de batch
+  - [`PCA_sin_batch.pdf`](figures/PCA_sin_batch.pdf): La imagen muestra el PCA sin los efectos del batch
+  - [`PCA_sin_batch_elipses.pdf`](figures/PCA_sin_batch_elipses.pdf): La imagen muestra el PCA sin los efectos del batch y con los clusters identificados
+  - [`Nf_workflow.jpg`](figures/Nf_workflow.jpg): Diagrama de flujo de nuestro trabajo
+  - [`post_trimming_adapter_content.png`](figures/post_trimming_adapter_content.png): Distribución del contenido de adaptadores post trimming
+  - [`post_trimming_gc_content.png`](figures/post_trimming_gc_content.png): Contenido de GC en el multiqc después de quitar sesgo de GC por PCR
+  - [`post_trimming_general_statistics.png`](figures/post_trimming_general_statistics.png): Estadísticas generales del multiqc post trimming
+  - [`post_trimming_overrepresented_Seq.png`](figures/post_trimming_overrepresented_Seq.png): Si es que hay secuencias sobrerrepresentadas después del trimming
+  - [`post_trimming_per_base_N_content.png`](figures/post_trimming_per_base_N_content.png): Indica si hay alguna base no identificada
+  - [`post_trimming_per_base_seq_content.png`](figures/post_trimming_per_base_seq_content.png): Muestra el contenido por base en el multiqc
+  - [`post_trimming_per_seq_quality.png`](figures/post_trimming_per_seq_quality.png): Indica la calidad por secuencias post trimming
+  - [`post_trimming_seq_duplication.png`](figures/post_trimming_seq_duplication.png): Si hay secuencias duplicadas post trimming, aquí se muestran
+  - [`post_trimming_seq_length_distribution.png`](figures/post_trimming_seq_length_distribution.png): Muestra la distribución en el tamaño de las secuencias post trimming
+  - [`post_trimming_sequence_quality.png`](figures/post_trimming_sequence_quality.png): La imagen contiene la calidad de las secuencias post trimming
+  - [`SeqLenOverAll.png`](figures/SeqLenOverAll.png): Es la distribución del tamaño de las secuencias de los datos procesados, que varían entre 40-300 bp
+  - [`ManhattanGO_A1G_vs_GC.pdf`](figures/ManhattanGO_A1G_vs_GC.pdf), [`ManhattanGO_MG_vs_A1G.pdf`](figures/ManhattanGO_MG_vs_A1G.pdf) y [`ManhattanGO_MG_vs_GC.pdf`](figures/ManhattanGO_MG_vs_GC.pdf): Plots de enriquecimiento funcional que comparan los genes diferencialmente expresados
+  - [`barplotDOWN_GO_A1G_vs_GC.pdf`](figures/barplotDOWN_GO_A1G_vs_GC.pdf): Gráfica de las funciones biológicas subexpresadas en gravedad artificial respecto al control
+  - [`barplotDOWN_GO_MG_vs_A1G.pdf`](figures/barplotDOWN_GO_MG_vs_A1G.pdf): Gráfica de las funciones biológicas subexpresadas en microgravedad respecto a gravedad artificial
+  - [`barplotDOWN_GO_MG_vs_GC.pdf`](figures/barplotDOWN_GO_MG_vs_GC.pdf): Gráfica de las funciones biológicas subexpresadas en microgravedad respecto al control
+  - [`barplotUP_GO_A1G_vs_GC.pdf`](figures/barplotUP_GO_A1G_vs_GC.pdf): Gráfica de las funciones biológicas sobreexpresadas en gravedad artificial respecto al control
+  - [`barplotUP_GO_MG_vs_A1G.pdf`](figures/barplotUP_GO_MG_vs_A1G.pdf): Gráfica de las funciones biológicas sobreexpresadas en microgravedad respecto a gravedad artificial
+  - [`barplotUP_GO_MG_vs_GC.pdf`](figures/barplotUP_GO_MG_vs_GC.pdf): Gráfica de las funciones biológicas sobreexpresadas en microgravedad respecto al control
+- [`Reporte_Equipo3_Rna_seq.qmd`](Reporte_Equipo3_Rna_seq.qmd): Es un archivo .qmd con toda la documentación del análisis, discusión, etc.
+- [`metadatas.csv`](metadatas.csv): Este archivo contiene los metadatos del análisis
+- [`scripts/`](scripts/): Este directorio contiene todos los scripts para realizar el análisis.
+  - [`download_data/`](scripts/download_data/): Contiene el script utilizado para descargar los transcritos crudos mandado como job
+  - [`rna_nextflow/`](scripts/rna_nextflow/): Dentro de esta carpeta se encuentran los scripts utilizados para correr el trimming y el pseudoalineamiento usando nextflow
+  - [`samplesheet.csv`](scripts/samplesheet.csv): El input para nextflow
+  - [`normalizacion_salmon/`](scripts/normalizacion_salmon/): Dentro de esta carpeta podremos encontrar dos scripts
+    - [`normalizacion_salmon.R`](scripts/normalizacion_salmon/normalizacion_salmon.R): Este script se enfoca en importar los datos usando tximport
+    - [`deseq2.R`](scripts/normalizacion_salmon/deseq2.R): Este código integra información del script anterior para hacer el PCA, la corrección de batch y el análisis de expresión diferencial
+  - [`gene_ontology/`](scripts/gene_ontology/): Este script contiene el código para hacer el análisis de enriquecimiento
+  - [`outlogs/`](scripts/outlogs/): Contiene los archivos de salida estándar `.out` y los archivos de error estándar `.err` que contiene los errores o warnings de cada script corrido.
+      - [`DownloadData_1397.err`](scripts/outlogs/DownloadData_1397.err) y [`DownloadData_1397.out`](scripts/outlogs/DownloadData_1397.out) corresponden al script de `download_Data.sh` de la carpeta `download_data/`
+      - [`deseq2_1818.err`](scripts/outlogs/deseq2_1818.err) y [`deseq2_1818.out`](scripts/outlogs/deseq2_1818.out) corresponden al script de `deseq2.R` de la carpeta `normalizacion_salmon/`
+      - [`normalizacion_1792.err`](scripts/outlogs/normalizacion_1792.err) y [`normalizacion_1792.out`](scripts/outlogs/normalizacion_1792.out) corresponden al script de `normalizacion_salmon.R` de la carpeta `normalizacion_salmon/`
+      - [`rnaseq_1478.err`](scripts/outlogs/rnaseq_1478.err) y [`rnaseq_1478.out`](scripts/outlogs/rnaseq_1478.out) corresponden al script de `rna_nextflow.sh` de la carpeta `rna_nextflow/`
+      - [`gene_ontology_1817.err`](scripts/outlogs/gene_ontology_1817.err) y [`gene_ontology_1817.out`](scripts/outlogs/gene_ontology_1817.out) corresponden al script de `gene_ontology.sh` de la carpeta `gene_ontology/`
+- [`DEG/`](DEG/): Directorio que contiene los resultados del análisis de expresión diferencial
+    - `DEG_*.csv` : Resultados completos de DESeq2, todos los genes con sus estadísticas (log2FoldChange, pvalue, padj, etc.), sin ningún filtro
+    - `SIG_*.csv` : Subconjunto de genes ya filtrado con padj < 0.05 y |LFC| ≥ 2 (todos los genes son significativos).
     - `res_*.RData`: Son los resultados de DESeq2 guardados en formato de R, para recargar los datos en R sin tener que correr DESeq2 de nuevo.
-    
 
 | biosample | grupo     | condicion                          | sample_ID           | srr_ID      |
 |----------:|-----------|------------------------------------|---------------------|-------------|
