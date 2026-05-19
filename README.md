@@ -33,7 +33,7 @@ El análisis identificó cambios en la expresión génica asociados a la adaptac
 Este repositorio contiene una estructura diferente a la de de Ken, para observar la documentación de la estrutura de Ken, dirgirse a `Reporte_Equipo3_Rna_seq.qmd`. Las carpetas con su descripción se muestran a continuación así como el pie de imagen de cada una de ellas
 
 - `figures/`: Este directorio contiene todas las imágenes generadas durante el análisis y la documentación
-  - [`antes_trimming_multqic_mean_quality.png`](figures/antes_trimming_multqic_mean_quality.png) `antes_trimming_multqic_mean_quality.png`: Esta imagen es el resultado del multiqc en la sección mean quality antes de hacer el trimming
+  - (figures/antes_trimming_multqic_mean_quality.png) `antes_trimming_multqic_mean_quality.png`: Esta imagen es el resultado del multiqc en la sección mean quality antes de hacer el trimming
   - `antes_trimming_gc_percent.png`: La imagen se refiere al porcentaje de GC en el multiqc antes de hacer el trimming
   - `antes_trimming_q_scores.png`: La imagen representa la distribución de calidades de las secuencias antes de hacer el trimming
   - `antes_trimming_per_base_seq_content.png`: Contiene un gráfico que muestra la proporción de bases A, T, G, C en el multiqc antes de hacer el trimming
